@@ -1,0 +1,42 @@
+name: CI for Angular Project
+
+# Trigger the workflow on push and pull request events
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Lint the code
+      - name: Run ESLint
+        run: npm run lint
+
+      # 5. Run tests
+      - name: Run tests
+        run: npm test -- --watch=false --no-progress --browsers ChromeHeadless
+
+      # 6. Build the application
+      - name: Build Angular application
+        run: npm run build --prod

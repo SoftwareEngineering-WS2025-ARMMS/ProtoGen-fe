@@ -1,0 +1,20 @@
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step label="Upload Recording">
+    <app-upload-step (completed)="goNextStep(stepper)"></app-upload-step>
+  </mat-step>
+  <mat-step label="Identify Speakers">
+    <app-identify-speakers-step
+      (completed)="goNextStep(stepper)"
+    ></app-identify-speakers-step>
+  </mat-step>
+  <mat-step label="Edit Transcript">
+    <app-edit-transcript-step
+      (completed)="goNextStep(stepper)"
+    ></app-edit-transcript-step>
+  </mat-step>
+  <mat-step label="Edit Protocol">
+    <app-edit-protocol-step
+      (completed)="finishProcess()"
+    ></app-edit-protocol-step>
+  </mat-step>
+</mat-horizontal-stepper>
