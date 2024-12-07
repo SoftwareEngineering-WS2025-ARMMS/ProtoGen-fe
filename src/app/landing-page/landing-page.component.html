@@ -1,21 +1,14 @@
 <div class="landing-page">
-  <h1>Your Protocols</h1>
-  <button routerLink="/create-protocol" class="btn btn-primary">
-    Create New Protocol
-  </button>
-  <ul>
-    <li *ngFor="let protocol of protocols$ | async">
-      <h2>{{ protocol.title }}</h2>
-      <p><strong>Date:</strong> {{ protocol.date }}</p>
-      <p><strong>Place:</strong> {{ protocol.place }}</p>
-      <p>
-        <strong>Number of Attendees:</strong> {{ protocol.numberOfAttendees }}
-      </p>
-      <ul>
-        <li *ngFor="let item of protocol.tagesordnungspunkte">
-          <strong>{{ item.title }}:</strong> {{ item.explanation }}
-        </li>
-      </ul>
-    </li>
-  </ul>
+  <main>
+    <button routerLink="/create-protocol" class="btn btn-primary">
+      Neues Protokoll erstellen
+    </button>
+    <h1>Gespeicherte Protokolle</h1>
+    <div class="protocol-cards">
+      <app-protocol-card
+        *ngFor="let protocol of protocols$ | async"
+        [protocol]="protocol"
+      ></app-protocol-card>
+    </div>
+  </main>
 </div>
