@@ -1,0 +1,43 @@
+.landing-page main {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fc;
+  height: 100vh;
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    padding: 0.5rem 1rem;
+  }
+
+  .btn {
+    display: flex;
+    margin: 0 auto;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+      background-color 0.3s,
+      transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background-color: #3700b3;
+      transform: translateY(-3px);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.protocol-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}

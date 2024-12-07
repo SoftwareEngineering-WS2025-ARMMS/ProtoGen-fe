@@ -1,0 +1,42 @@
+<ng-container *ngIf="protocol">
+  <mat-card class="protocol-card">
+    <mat-card-header>
+      <mat-card-title>
+        <span class="title">{{ protocol.title }}</span>
+      </mat-card-title>
+      <mat-card-subtitle class="subtitle-tags">
+        <span class="tag date">
+          <mat-icon fontIcon="event"></mat-icon>
+          {{ protocol.date | date }}
+        </span>
+        <span class="tag place">
+          <mat-icon fontIcon="place"></mat-icon>
+          {{ protocol.place }}
+        </span>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <div class="content-section">
+        <p><strong>Anwesende:</strong> {{ protocol.numberOfAttendees }}</p>
+      </div>
+      <div class="content-section">
+        <p><strong>Tagesordnungspunkte:</strong></p>
+        <ul>
+          <li *ngFor="let item of protocol.tagesordnungspunkte">
+            <mat-icon class="agenda-icon">event_note</mat-icon>
+            <strong>{{ item.title }}</strong>
+          </li>
+        </ul>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" class="action-button">
+        Anschauen
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

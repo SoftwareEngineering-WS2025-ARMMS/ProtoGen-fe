@@ -9,43 +9,44 @@ export class ProtocolService {
   private protocols: Protocol[] = [
     {
       id: '1',
-      title: 'Monthly Team Meeting',
+      title: 'Monatliches Team-Meeting',
       date: '2024-12-01',
-      place: 'Conference Room A',
+      place: 'Konferenzraum A',
       numberOfAttendees: 12,
       tagesordnungspunkte: [
         {
-          title: 'Project Updates',
-          explanation: 'Updates on ongoing projects.',
+          title: 'Projekt-Updates',
+          explanation: 'Aktualisierungen zu laufenden Projekten.',
         },
         {
-          title: 'Budget Discussion',
-          explanation: 'Review of the quarterly budget.',
+          title: 'Budget-Diskussion',
+          explanation: 'Überprüfung des vierteljährlichen Budgets.',
         },
         {
-          title: 'Next Steps',
-          explanation: 'Planning the roadmap for the next quarter.',
+          title: 'Nächste Schritte',
+          explanation: 'Planung der Roadmap für das nächste Quartal.',
         },
       ],
     },
     {
       id: '2',
-      title: 'Annual General Meeting',
-      date: '2024-11-15',
-      place: 'Main Auditorium',
+      title: 'Jahreshauptversammlung',
+      date: '2024-12-15',
+      place: 'Haupt-Auditorium',
       numberOfAttendees: 50,
       tagesordnungspunkte: [
         {
-          title: 'Board Elections',
-          explanation: 'Electing the new board members.',
+          title: 'Vorstandswahlen',
+          explanation: 'Wahl der neuen Vorstandsmitglieder.',
         },
         {
-          title: 'Financial Report',
-          explanation: 'Overview of the annual financial performance.',
+          title: 'Finanzbericht',
+          explanation: 'Überblick über die jährliche Finanzperformance.',
         },
         {
           title: 'Vision 2025',
-          explanation: 'Setting goals and strategies for the next year.',
+          explanation:
+            'Festlegung von Zielen und Strategien für das nächste Jahr.',
         },
       ],
     },
