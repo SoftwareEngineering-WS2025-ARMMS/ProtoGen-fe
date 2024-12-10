@@ -1,20 +1,65 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step label="Upload Recording">
-    <app-upload-step (completed)="goNextStep(stepper)"></app-upload-step>
+  <ng-template #stepperIcon>
+    <mat-icon>multitrack_audio</mat-icon>
+  </ng-template>
+  <mat-step [label]="'Aufnahme'">
+    <div *ngIf="stepper.selectedIndex === 0">
+      <app-upload-step
+        (completed)="goNextStep(stepper)"
+        [stepper]="stepper"
+      ></app-upload-step>
+    </div>
   </mat-step>
-  <mat-step label="Identify Speakers">
-    <app-identify-speakers-step
-      (completed)="goNextStep(stepper)"
-    ></app-identify-speakers-step>
+
+  <ng-template #stepperIcon>
+    <mat-icon>spatial_audio_off</mat-icon>
+  </ng-template>
+  <mat-step [label]="'Sprecher Identifizieren'">
+    <div *ngIf="stepper.selectedIndex === 1">
+      <app-identify-speakers-step
+        (completed)="goNextStep(stepper)"
+      ></app-identify-speakers-step>
+    </div>
   </mat-step>
-  <mat-step label="Edit Transcript">
+
+  <ng-template #stepperIcon>
+    <mat-icon>edit_note</mat-icon>
+  </ng-template>
+  <mat-step [label]="'Transkript Bearbeiten'">
     <app-edit-transcript-step
       (completed)="goNextStep(stepper)"
     ></app-edit-transcript-step>
   </mat-step>
-  <mat-step label="Edit Protocol">
+
+  <ng-template #stepperIcon>
+    <mat-icon>edit_note</mat-icon>
+  </ng-template>
+  <mat-step [label]="'Protokoll Bearbeiten'">
     <app-edit-protocol-step
       (completed)="finishProcess()"
     ></app-edit-protocol-step>
   </mat-step>
+
+  <!-- https://stackoverflow.com/questions/53132581/override-the-default-icon-from-mat-stepper-angular-material -->
+
+  <ng-template matStepperIcon="number" let-index="index">
+    <ng-container
+      [ngTemplateOutlet]="matStepperIcons && matStepperIcons[index]"
+    ></ng-container>
+  </ng-template>
+  <ng-template matStepperIcon="edit" let-index="index">
+    <ng-container
+      [ngTemplateOutlet]="matStepperIcons && matStepperIcons[index]"
+    ></ng-container>
+  </ng-template>
+  <ng-template matStepperIcon="done" let-index="index">
+    <ng-container
+      [ngTemplateOutlet]="matStepperIcons && matStepperIcons[index]"
+    ></ng-container>
+  </ng-template>
+  <ng-template matStepperIcon="error" let-index="index">
+    <ng-container
+      [ngTemplateOutlet]="matStepperIcons && matStepperIcons[index]"
+    ></ng-container>
+  </ng-template>
 </mat-horizontal-stepper>
