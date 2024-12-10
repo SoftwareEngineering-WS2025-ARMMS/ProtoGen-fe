@@ -9,7 +9,7 @@ export interface Protocol {
   date: string;
   place: string;
   numberOfAttendees: number;
-  tagesordnungspunkte: AgendaItem[];
+  agendaItems: AgendaItem[];
 }
 
 export type Annotations = Record<string, string>;

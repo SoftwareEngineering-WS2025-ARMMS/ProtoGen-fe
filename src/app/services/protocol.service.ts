@@ -18,7 +18,7 @@ export class ProtocolService {
       date: '2024-12-01',
       place: 'Konferenzraum A',
       numberOfAttendees: 12,
-      tagesordnungspunkte: [
+      agendaItems: [
         {
           title: 'Projekt-Updates',
           explanation: 'Aktualisierungen zu laufenden Projekten.',
@@ -39,7 +39,7 @@ export class ProtocolService {
       date: '2024-12-15',
       place: 'Haupt-Auditorium',
       numberOfAttendees: 50,
-      tagesordnungspunkte: [
+      agendaItems: [
         {
           title: 'Vorstandswahlen',
           explanation: 'Wahl der neuen Vorstandsmitglieder.',
@@ -140,7 +140,7 @@ export class ProtocolService {
       date: new Date().toISOString().split('T')[0],
       place: 'München',
       numberOfAttendees: 7,
-      tagesordnungspunkte: [
+      agendaItems: [
         {
           title: 'Begrüßung',
           explanation: 'Willkommen und Vorstellung der Tagesordnung',
