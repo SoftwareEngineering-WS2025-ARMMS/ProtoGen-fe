@@ -1,1 +1,31 @@
-<p>identify-speakers-step works!</p>
+<div class="person-card-container">
+  <div class="person-list">
+    <mat-card *ngFor="let person of personKeys" class="person-card">
+      <div class="card-content">
+        <div class="top-section">
+          <mat-icon class="person-icon">person</mat-icon>
+          <mat-card-title class="person-name">{{ person }}</mat-card-title>
+        </div>
+        <div class="text-section">
+          <p class="person-text">{{ persons[person] }}</p>
+        </div>
+        <div class="name-input-section">
+          <mat-form-field appearance="outline" class="name-input">
+            <mat-label>Namen zuweisen</mat-label>
+            <input matInput [(ngModel)]="names[person]" />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div class="save-button-container">
+    <button
+      mat-raised-button
+      class="save-button"
+      color="primary"
+      (click)="saveAll()"
+    >
+      Speichern
+    </button>
+  </div>
+</div>

@@ -1,1 +1,27 @@
-<p>upload-step works!</p>
+<div class="container">
+  <label for="fileInput" class="custom-file-label">
+    <mat-icon fontIcon="upload"></mat-icon>
+    <span id="fileName">{{ selectedFile?.name || 'Datei auswählen' }}</span>
+    <input
+      type="file"
+      id="fileInput"
+      accept="audio/wav"
+      (change)="onFileSelected($event)"
+      hidden
+    />
+  </label>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="upload-button"
+    (click)="uploadFile(stepper)"
+    [disabled]="!selectedFile || isUploading"
+  >
+    {{ isUploading ? 'Hochladen...' : 'Aufnahme hochladen' }}
+  </button>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>
