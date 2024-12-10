@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
+import { ProtocolService } from '../../services/protocol.service';
+import { Annotations } from '../../models/protocol.model';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-identify-speakers-step',
@@ -21,11 +23,12 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './identify-speakers-step.component.scss',
 })
 export class IdentifySpeakersStepComponent implements OnInit {
+  @Input() stepper!: MatStepper;
   persons: Record<string, string> = {};
-  names: Record<string, string> = {};
+  names: Annotations = {};
   personKeys: string[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private protocolService: ProtocolService) {}
 
   ngOnInit(): void {
     const savedData = sessionStorage.getItem('step1Data');
@@ -49,16 +52,14 @@ export class IdentifySpeakersStepComponent implements OnInit {
   saveAll(): void {
     sessionStorage.setItem('step2Data', JSON.stringify(this.names));
 
-    // // Send data to backend
-    // this.http.post('/api/save-person-name', updatedData).subscribe({
-    //   next: () => {
-    //     console.log(`Saved name for ${person}: ${this.names[person]}`);
-    //     // Update sessionStorage
-    //     sessionStorage.setItem('step2Data', JSON.stringify(this.names));
-    //   },
-    //   error: (error) => {
-    //     console.error('Failed to save name:', error);
-    //   },
-    // });
+    this.protocolService.sendAnnotationsMocked(this.names).subscribe({
+      next: (response) => {
+        sessionStorage.setItem('step3Data', JSON.stringify(response));
+        this.stepper.next();
+      },
+      error: (error) => {
+        console.error('Failed to save name:', error);
+      },
+    });
   }
 }

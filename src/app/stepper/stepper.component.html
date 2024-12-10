@@ -18,6 +18,7 @@
     <div *ngIf="stepper.selectedIndex === 1">
       <app-identify-speakers-step
         (completed)="goNextStep(stepper)"
+        [stepper]="stepper"
       ></app-identify-speakers-step>
     </div>
   </mat-step>
@@ -26,18 +27,23 @@
     <mat-icon>edit_note</mat-icon>
   </ng-template>
   <mat-step [label]="'Transkript Bearbeiten'">
-    <app-edit-transcript-step
-      (completed)="goNextStep(stepper)"
-    ></app-edit-transcript-step>
+    <div *ngIf="stepper.selectedIndex === 2">
+      <app-edit-transcript-step
+        (completed)="goNextStep(stepper)"
+        [stepper]="stepper"
+      ></app-edit-transcript-step>
+    </div>
   </mat-step>
 
   <ng-template #stepperIcon>
     <mat-icon>edit_note</mat-icon>
   </ng-template>
   <mat-step [label]="'Protokoll Bearbeiten'">
-    <app-edit-protocol-step
-      (completed)="finishProcess()"
-    ></app-edit-protocol-step>
+    <div *ngIf="stepper.selectedIndex === 3">
+      <app-edit-protocol-step
+        (completed)="finishProcess()"
+      ></app-edit-protocol-step>
+    </div>
   </mat-step>
 
   <!-- https://stackoverflow.com/questions/53132581/override-the-default-icon-from-mat-stepper-angular-material -->
