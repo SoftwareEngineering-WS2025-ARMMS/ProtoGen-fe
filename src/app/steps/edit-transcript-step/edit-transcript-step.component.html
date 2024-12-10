@@ -1,1 +1,62 @@
-<p>edit-transcript-step works!</p>
+<div class="chat-header">
+  <!-- Date Field -->
+  <div class="form-group">
+    <label for="date">Datum:</label>
+    <input
+      type="date"
+      id="date"
+      [(ngModel)]="meetingDate"
+      class="form-control"
+    />
+  </div>
+
+  <!-- Anwesende Field -->
+  <div class="form-group">
+    <label for="attendees">Anwesende:</label>
+    <input
+      type="number"
+      id="attendees"
+      [(ngModel)]="attendees"
+      class="form-control"
+    />
+  </div>
+
+  <!-- Ort Field -->
+  <div class="form-group">
+    <label for="location">Ort:</label>
+    <input
+      type="text"
+      id="location"
+      [(ngModel)]="location"
+      class="form-control"
+    />
+  </div>
+</div>
+
+<!-- Chat Interface -->
+<div class="chat-container">
+  <div
+    *ngFor="let segment of transcript.segments; let i = index"
+    class="chat-bubble"
+  >
+    <div class="speaker-section">
+      <input
+        id="speaker-{{ i }}"
+        [(ngModel)]="segment.speaker"
+        placeholder="Sprecher"
+        class="speaker-input"
+      />
+    </div>
+    <div class="text-section">
+      <textarea
+        id="text-{{ i }}"
+        [(ngModel)]="segment.text"
+        placeholder="Transkript"
+        class="text-input"
+      ></textarea>
+    </div>
+  </div>
+</div>
+<button class="save-button" (click)="saveTranscript()">
+  Protokoll generieren
+</button>

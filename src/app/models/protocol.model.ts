@@ -11,3 +11,14 @@ export interface Protocol {
   numberOfAttendees: number;
   tagesordnungspunkte: AgendaItem[];
 }
+
+export type Annotations = Record<string, string>;
+
+export interface Transcript {
+  segments: Segment[];
+}
+
+interface Segment {
+  speaker: string;
+  text: string;
+}
