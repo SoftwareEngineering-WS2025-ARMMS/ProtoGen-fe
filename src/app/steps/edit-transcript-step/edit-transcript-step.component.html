@@ -1,27 +1,32 @@
 <!-- Chat Interface -->
-<div class="chat-container">
-  <div
-    *ngFor="let segment of transcript.segments; let i = index"
-    class="chat-bubble"
-  >
-    <div class="speaker-section">
-      <input
-        id="speaker-{{ i }}"
-        [(ngModel)]="segment.speaker"
-        placeholder="Sprecher"
-        class="speaker-input"
-      />
-    </div>
-    <div class="text-section">
-      <textarea
-        id="text-{{ i }}"
-        [(ngModel)]="segment.text"
-        placeholder="Transkript"
-        class="text-input"
-      ></textarea>
+<div *ngIf="requestSent; else content">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #content>
+  <div class="chat-container">
+    <div
+      *ngFor="let segment of transcript.segments; let i = index"
+      class="chat-bubble"
+    >
+      <div class="speaker-section">
+        <input
+          id="speaker-{{ i }}"
+          [(ngModel)]="segment.speaker"
+          placeholder="Sprecher"
+          class="speaker-input"
+        />
+      </div>
+      <div class="text-section">
+        <textarea
+          id="text-{{ i }}"
+          [(ngModel)]="segment.text"
+          placeholder="Transkript"
+          class="text-input"
+        ></textarea>
+      </div>
     </div>
   </div>
-</div>
-<button class="save-button" (click)="saveTranscript()">
-  Protokoll generieren
-</button>
+  <button class="save-button" (click)="saveTranscript()">
+    Protokoll generieren
+  </button>
+</ng-template>

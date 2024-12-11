@@ -156,6 +156,6 @@ export class ProtocolService {
       ],
     };
 
-    return of(mockProtocol).pipe(delay(2000)); // Simulates backend delay
+    return of(mockProtocol).pipe(delay(4000)); // Simulates backend delay
   }
 }

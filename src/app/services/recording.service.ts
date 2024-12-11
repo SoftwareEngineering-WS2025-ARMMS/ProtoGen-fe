@@ -32,6 +32,6 @@ export class RecordingService {
       },
     };
 
-    return of(mockResponse).pipe(delay(2000));
+    return of(mockResponse).pipe(delay(5000));
   }
 }

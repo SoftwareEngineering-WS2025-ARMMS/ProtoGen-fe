@@ -8,6 +8,7 @@ import { MatIcon } from '@angular/material/icon';
 import { ProtocolService } from '../../services/protocol.service';
 import { Annotations } from '../../models/protocol.model';
 import { MatStepper } from '@angular/material/stepper';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-identify-speakers-step',
@@ -18,6 +19,7 @@ import { MatStepper } from '@angular/material/stepper';
     FormsModule,
     MatInput,
     MatIcon,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './identify-speakers-step.component.html',
   styleUrl: './identify-speakers-step.component.scss',
@@ -27,6 +29,7 @@ export class IdentifySpeakersStepComponent implements OnInit {
   persons: Record<string, string> = {};
   names: Annotations = {};
   personKeys: string[] = [];
+  requestSent = false;
 
   constructor(private protocolService: ProtocolService) {}
 
@@ -50,14 +53,17 @@ export class IdentifySpeakersStepComponent implements OnInit {
   }
 
   saveAll(): void {
+    this.requestSent = true;
     sessionStorage.setItem('step2Data', JSON.stringify(this.names));
 
     this.protocolService.sendAnnotationsMocked(this.names).subscribe({
       next: (response) => {
         sessionStorage.setItem('step3Data', JSON.stringify(response));
+        this.requestSent = false;
         this.stepper.next();
       },
       error: (error) => {
+        this.requestSent = false;
         console.error('Failed to save name:', error);
       },
     });
