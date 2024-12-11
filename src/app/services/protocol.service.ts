@@ -18,7 +18,7 @@ export class ProtocolService {
       date: '2024-12-01',
       place: 'Konferenzraum A',
       numberOfAttendees: 12,
-      tagesordnungspunkte: [
+      agendaItems: [
         {
           title: 'Projekt-Updates',
           explanation: 'Aktualisierungen zu laufenden Projekten.',
@@ -39,7 +39,7 @@ export class ProtocolService {
       date: '2024-12-15',
       place: 'Haupt-Auditorium',
       numberOfAttendees: 50,
-      tagesordnungspunkte: [
+      agendaItems: [
         {
           title: 'Vorstandswahlen',
           explanation: 'Wahl der neuen Vorstandsmitglieder.',
@@ -78,7 +78,7 @@ export class ProtocolService {
           text: 'Willkommen zu unserem heutigen Treffen! Wir haben viel zu besprechen, also lasst uns direkt anfangen.',
         },
         {
-          speaker: 'Julian',
+          speaker: 'Jenny',
           text: 'Danke, dass ihr alle gekommen seid. Ich wollte mit euch über die Planung des Sommerfestes sprechen.',
         },
         {
@@ -90,7 +90,7 @@ export class ProtocolService {
           text: 'Ja genau, und wir sollten auch überlegen, welche Aktivitäten wir anbieten wollen.',
         },
         {
-          speaker: 'Julian',
+          speaker: 'Jenny',
           text: 'Ich denke, ein kleines Konzert wäre eine tolle Idee. Vielleicht könnten wir lokale Bands einladen?',
         },
         {
@@ -102,7 +102,7 @@ export class ProtocolService {
           text: 'Ich kann mich um das Budget kümmern. Wir sollten außerdem jemanden finden, der das Catering organisiert.',
         },
         {
-          speaker: 'Julian',
+          speaker: 'Jenny',
           text: 'Ich kenne jemanden, der bei einem lokalen Restaurant arbeitet. Ich kann ihn fragen, ob sie Interesse haben.',
         },
         {
@@ -114,7 +114,7 @@ export class ProtocolService {
           text: 'Okay, ich werde das alles zusammenfassen und die Aufgaben verteilen. Gibt es sonst noch etwas, was wir berücksichtigen müssen?',
         },
         {
-          speaker: 'Julian',
+          speaker: 'Jenny',
           text: 'Vielleicht ein Plan B für schlechtes Wetter? Ein Zelt oder eine Halle als Backup wäre gut.',
         },
         {
@@ -138,9 +138,9 @@ export class ProtocolService {
       id: '12345',
       title: 'Sommerfest Planung',
       date: new Date().toISOString().split('T')[0],
-      place: 'Munchen',
+      place: 'München',
       numberOfAttendees: 7,
-      tagesordnungspunkte: [
+      agendaItems: [
         {
           title: 'Begrüßung',
           explanation: 'Willkommen und Vorstellung der Tagesordnung',

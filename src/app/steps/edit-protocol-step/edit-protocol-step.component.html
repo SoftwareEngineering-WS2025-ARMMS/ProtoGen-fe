@@ -1,1 +1,82 @@
-<p>edit-protocol-step works!</p>
+<div *ngIf="protocol" class="protocol-container">
+  <h2 class="section-title">{{ protocol.title }}</h2>
+
+  <!-- Edit Title -->
+  <div class="form-group">
+    <label for="protocolTitle">Titel</label>
+    <input
+      type="text"
+      id="protocolTitle"
+      [(ngModel)]="protocol.title"
+      class="form-control"
+      placeholder="Enter protocol title"
+    />
+  </div>
+
+  <div class="protocol-header">
+    <!-- Date Field -->
+    <div class="form-group">
+      <label for="date">Datum</label>
+      <input
+        type="date"
+        id="date"
+        [(ngModel)]="protocol.date"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Attendees Field -->
+    <div class="form-group">
+      <label for="attendees">Anwesende</label>
+      <input
+        type="number"
+        id="attendees"
+        [(ngModel)]="protocol.numberOfAttendees"
+        class="form-control"
+        placeholder="Number of attendees"
+      />
+    </div>
+
+    <!-- Location Field -->
+    <div class="form-group">
+      <label for="location">Ort</label>
+      <input
+        type="text"
+        id="location"
+        [(ngModel)]="protocol.place"
+        class="form-control"
+        placeholder="Enter location"
+      />
+    </div>
+  </div>
+
+  <!-- Edit Agenda Items -->
+  <div class="agenda-items">
+    <h3 class="section-title">Tagesordnungspunkte</h3>
+    <div
+      *ngFor="let item of protocol.agendaItems; let i = index"
+      class="agenda-item"
+    >
+      <div class="form-group">
+        <label for="agendaTitle-{{ i }}">{{ i + 1 }}.</label>
+        <input
+          type="text"
+          id="agendaTitle-{{ i }}"
+          [(ngModel)]="item.title"
+          class="form-control"
+          placeholder="Agenda item title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="agendaExplanation-{{ i }}">Erläuterung</label>
+        <textarea
+          id="agendaExplanation-{{ i }}"
+          [(ngModel)]="item.explanation"
+          class="form-control"
+          placeholder="Explain the agenda item"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn save-button" (click)="saveProtocol()">Speichern</button>
