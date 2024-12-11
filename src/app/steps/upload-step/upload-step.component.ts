@@ -4,10 +4,11 @@ import { RecordingService } from '../../services/recording.service';
 import { MatStepper } from '@angular/material/stepper';
 import { UploadResponse } from '../../models/upload.response';
 import { NgIf } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-upload-step',
-  imports: [MatIcon, NgIf],
+  imports: [MatIcon, NgIf, MatProgressSpinnerModule],
   templateUrl: './upload-step.component.html',
   styleUrl: './upload-step.component.scss',
 })
@@ -38,7 +39,6 @@ export class UploadStepComponent {
         this.isUploading = false;
         this.stepData = response;
         sessionStorage.setItem('step1Data', JSON.stringify(this.stepData));
-        console.log(this.stepData);
         stepper.next();
       },
       error: (error) => {
