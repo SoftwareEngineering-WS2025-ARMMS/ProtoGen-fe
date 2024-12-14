@@ -131,6 +131,10 @@ export class ProtocolService {
     return of(mockResponse).pipe(delay(2000));
   }
 
+  sendTranscriptToBackend(transcript: Transcript): Observable<Protocol> {
+    return this.http.post<Protocol>('/api/transcript', transcript);
+  }
+
   sendTranscriptToBackendmocked(transcript: Transcript): Observable<Protocol> {
     this.http.post<Transcript>(this.url, transcript);
     // Mocked backend response
