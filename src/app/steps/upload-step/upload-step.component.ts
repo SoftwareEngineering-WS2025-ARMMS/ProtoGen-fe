@@ -34,7 +34,7 @@ export class UploadStepComponent {
   uploadFile(stepper: MatStepper): void {
     this.isUploading = true;
 
-    this.fileUploadService.uploadAudioMock(this.selectedFile!).subscribe({
+    this.fileUploadService.uploadAudioFile(this.selectedFile!).subscribe({
       next: (response: UploadResponse) => {
         this.isUploading = false;
         this.stepData = response;

@@ -56,7 +56,7 @@ export class IdentifySpeakersStepComponent implements OnInit {
     this.requestSent = true;
     sessionStorage.setItem('step2Data', JSON.stringify(this.names));
 
-    this.protocolService.sendAnnotationsMocked(this.names).subscribe({
+    this.protocolService.sendAnnotations(this.names).subscribe({
       next: (response) => {
         sessionStorage.setItem('step3Data', JSON.stringify(response));
         this.requestSent = false;
