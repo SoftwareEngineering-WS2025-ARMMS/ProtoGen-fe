@@ -89,6 +89,16 @@ textarea {
   margin-right: auto;
 }
 
+.export-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left: auto;
+  right: 10px;
+}
+
 .save-button {
   display: flex;
   margin: 20px auto;

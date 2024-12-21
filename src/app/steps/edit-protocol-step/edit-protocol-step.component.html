@@ -96,6 +96,15 @@
     >
       <i class="material-icons">add</i>
     </button>
+    <button
+      class="export-button"
+      mat-icon-button
+      matTooltip="Als PDF exportieren"
+      [matTooltipPosition]="'right'"
+      (click)="exportToPDF()"
+    >
+      <i class="material-icons">download</i>
+    </button>
   </div>
 </div>
 <button class="save-button" (click)="saveProtocol()">Speichern</button>
