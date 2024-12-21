@@ -64,7 +64,7 @@
           id="agendaTitle-{{ i }}"
           [(ngModel)]="item.title"
           class="form-control"
-          placeholder="Agenda item title"
+          placeholder="Titel des Tagesordnungspunkts"
         />
       </div>
       <div class="form-group">
@@ -73,10 +73,29 @@
           id="agendaExplanation-{{ i }}"
           [(ngModel)]="item.explanation"
           class="form-control"
-          placeholder="Explain the agenda item"
+          placeholder="Erläuterung zum Tagesordnungspunkt"
         ></textarea>
       </div>
+      <button
+        mat-icon-button
+        class="delete-item-button"
+        matTooltip="Tagesordnungspunkt löschen"
+        [matTooltipPosition]="'right'"
+        (click)="deleteAgendaItem(i)"
+      >
+        <i class="material-icons">delete</i>
+      </button>
     </div>
+    <button
+      mat-icon-button
+      class="add-item-button"
+      matTooltip="Tagesordnungspunkt hinzufügen"
+      [matTooltipPosition]="'right'"
+      (click)="addAgendaItem()"
+      [disabled]="protocol.agendaItems.length >= 10"
+    >
+      <i class="material-icons">add</i>
+    </button>
   </div>
 </div>
-<button class="btn save-button" (click)="saveProtocol()">Speichern</button>
+<button class="save-button" (click)="saveProtocol()">Speichern</button>
