@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { ProtocolCardComponent } from '../protocol-card/protocol-card.component';
+import { ProtocolDetailComponent } from './protocol-detail/protocol-detail.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-landing-page',
@@ -27,9 +29,18 @@ import { ProtocolCardComponent } from '../protocol-card/protocol-card.component'
 export class LandingPageComponent implements OnInit {
   protocols$!: Observable<Protocol[]>;
 
-  constructor(private protocolService: ProtocolService) {}
+  constructor(
+    private protocolService: ProtocolService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.protocols$ = this.protocolService.getProtocols();
+  }
+
+  openProtocolDetails(protocol: Protocol): void {
+    this.dialog.open(ProtocolDetailComponent, {
+      data: protocol,
+    });
   }
 }

@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { MatIconButton } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { jsPDF } from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import { exportToPDF } from '../../utils/pdf-exporter';
 
 @Component({
   selector: 'app-edit-protocol-step',
@@ -45,74 +44,6 @@ export class EditProtocolStepComponent implements OnInit {
   }
 
   exportToPDF() {
-    const doc = new jsPDF({
-      orientation: 'p',
-      unit: 'mm',
-      format: 'a4',
-      putOnlyUsedFonts: true,
-    });
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(14);
-    doc.text(`Protokoll ${this.protocol.title}`, 15, 10);
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-
-    doc.text(`Datum: ${this.protocol.date}`, 15, 20);
-    doc.text(`Ort: ${this.protocol.place}`, 15, 25);
-    doc.text(`Anwesende: ${this.protocol.numberOfAttendees}`, 15, 30);
-
-    doc.text('Die Tagesordnungspunkte sind:', 15, 45);
-
-    let yPosition = 50;
-    const agendaData = this.protocol.agendaItems.map((item, index) => ({
-      content: `${index + 1}. ${item.title}`,
-    }));
-
-    // Use autoTable to handle text wrapping and page breaks for agenda items
-    autoTable(doc, {
-      theme: 'plain',
-      startY: yPosition,
-      head: [],
-      body: agendaData.map((item) => [item.content]),
-      margin: { left: 15, right: 15 },
-      columnStyles: {
-        0: { cellWidth: 'auto' },
-      },
-      styles: {
-        cellPadding: 2,
-        fontSize: 10,
-        valign: 'top',
-        overflow: 'linebreak',
-        font: 'helvetica',
-      },
-    });
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-    yPosition = (doc as any).lastAutoTable.finalY + 10;
-
-    const explanationData = this.protocol.agendaItems.map((item, index) => ({
-      content: `${index + 1}. ${item.explanation}`,
-    }));
-
-    autoTable(doc, {
-      theme: 'plain',
-      startY: yPosition,
-      head: [],
-      body: explanationData.map((item) => [item.content]),
-      margin: { left: 25, right: 15 },
-      columnStyles: {
-        0: { cellWidth: 'auto' },
-      },
-      styles: {
-        cellPadding: 2,
-        fontSize: 10,
-        valign: 'top',
-        overflow: 'linebreak',
-        font: 'helvetica',
-      },
-    });
-
-    doc.save(`Protokoll_${this.protocol.date}.pdf`);
+    exportToPDF(this.protocol);
   }
 }

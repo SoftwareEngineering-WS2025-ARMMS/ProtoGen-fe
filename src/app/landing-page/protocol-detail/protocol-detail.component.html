@@ -1,0 +1,38 @@
+<div class="protocol-dialog">
+  <div class="dialog-header">
+    <h2 mat-dialog-title>{{ protocol.title }}</h2>
+    <button
+      class="export-button"
+      mat-icon-button
+      matTooltip="Als PDF exportieren"
+      [matTooltipPosition]="'right'"
+      (click)="exportToPDF()"
+    >
+      <i class="material-icons">download</i>
+    </button>
+  </div>
+
+  <mat-dialog-content>
+    <p><strong>Datum:</strong> {{ protocol.date }}</p>
+    <p><strong>Ort:</strong> {{ protocol.place }}</p>
+    <p><strong>Anwesende:</strong> {{ protocol.numberOfAttendees }}</p>
+
+    <h3>Tagesordnungspunkte</h3>
+    <ul class="agenda-list">
+      <li *ngFor="let item of protocol.agendaItems; let i = index">
+        <strong>{{ i + 1 }}. {{ item.title }}</strong
+        >: {{ item.explanation }}
+      </li>
+    </ul>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button
+      mat-icon-button
+      mat-dialog-close
+      aria-label="Close"
+      class="close-button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-dialog-actions>
+</div>

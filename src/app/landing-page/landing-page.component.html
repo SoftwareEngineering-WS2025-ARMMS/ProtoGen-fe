@@ -8,6 +8,7 @@
       <app-protocol-card
         *ngFor="let protocol of protocols$ | async"
         [protocol]="protocol"
+        (click)="openProtocolDetails(protocol)"
       ></app-protocol-card>
     </div>
   </main>
