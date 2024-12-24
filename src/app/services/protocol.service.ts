@@ -55,6 +55,50 @@ export class ProtocolService {
         },
       ],
     },
+    {
+      id: '2',
+      title: 'Jahreshauptversammlung',
+      date: '2024-12-15',
+      place: 'Haupt-Auditorium',
+      numberOfAttendees: 50,
+      agendaItems: [
+        {
+          title: 'Vorstandswahlen',
+          explanation: 'Wahl der neuen Vorstandsmitglieder.',
+        },
+        {
+          title: 'Finanzbericht',
+          explanation: 'Überblick über die jährliche Finanzperformance.',
+        },
+        {
+          title: 'Vision 2025',
+          explanation:
+            'Festlegung von Zielen und Strategien für das nächste Jahr.',
+        },
+      ],
+    },
+    {
+      id: '2',
+      title: 'Jahreshauptversammlung',
+      date: '2024-12-15',
+      place: 'Haupt-Auditorium',
+      numberOfAttendees: 50,
+      agendaItems: [
+        {
+          title: 'Vorstandswahlen',
+          explanation: 'Wahl der neuen Vorstandsmitglieder.',
+        },
+        {
+          title: 'Finanzbericht',
+          explanation: 'Überblick über die jährliche Finanzperformance.',
+        },
+        {
+          title: 'Vision 2025',
+          explanation:
+            'Festlegung von Zielen und Strategien für das nächste Jahr.',
+        },
+      ],
+    },
   ];
 
   getProtocols(): Observable<Protocol[]> {

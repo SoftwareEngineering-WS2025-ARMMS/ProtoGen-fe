@@ -4,12 +4,66 @@
       Neues Protokoll erstellen
     </button>
     <h1>Gespeicherte Protokolle</h1>
+    <!-- Filtering Options -->
+    <div class="filters">
+      <mat-form-field>
+        <mat-label>Ort</mat-label>
+        <input
+          matInput
+          (input)="setPlaceFilter($event)"
+          placeholder="Filtern nach Ort"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Startdatum</mat-label>
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          (dateChange)="
+            setDateRangeFilter($event.value, filterDateRange$.value.end)
+          "
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enddatum</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endPicker"
+          (dateChange)="
+            setDateRangeFilter(filterDateRange$.value.start, $event.value)
+          "
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="endPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- Protocol Cards -->
     <div class="protocol-cards">
       <app-protocol-card
-        *ngFor="let protocol of protocols$ | async"
+        *ngFor="let protocol of filteredProtocols$ | async"
         [protocol]="protocol"
         (click)="openProtocolDetails(protocol)"
       ></app-protocol-card>
     </div>
+
+    <!-- Pagination -->
+    <mat-paginator
+      class="paginator"
+      [length]="(protocols$ | async)!.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[3, 6, 9]"
+      (page)="handlePageEvent($event)"
+    ></mat-paginator>
   </main>
 </div>

@@ -1,8 +1,12 @@
+.landing-page {
+  background-color: #f4f7fc;
+}
+
 .landing-page main {
   padding: 2rem;
   font-family: Arial, sans-serif;
-  background-color: #f4f7fc;
-  height: 100vh;
+  min-height: 100vh;
+  margin: 0 auto;
   h1 {
     text-align: center;
     font-size: 2rem;
@@ -35,10 +39,24 @@
       outline: none;
     }
   }
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+  }
 }
 
 .protocol-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
   gap: 16px;
+  width: 80%;
+  justify-self: center;
+}
+.paginator {
+  padding-top: 1rem;
+  background: none;
+  justify-self: right;
+  margin-right: 10%;
 }
