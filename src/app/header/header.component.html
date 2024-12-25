@@ -3,4 +3,11 @@
     <img src="feather.png" alt="Logo" />
     <span>ProtoGen</span>
   </div>
+  <div class="user-info" *ngIf="userInfo">
+    <div class="details">
+      <span class="username">{{ userInfo.username }}</span>
+      <span class="organization">{{ userInfo.organization }}</span>
+    </div>
+    <img class="avatar" src="{{ logo_url }}" alt="Verein Avatar" />
+  </div>
 </header>

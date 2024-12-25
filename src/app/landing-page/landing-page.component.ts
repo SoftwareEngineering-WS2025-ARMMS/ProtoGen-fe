@@ -114,7 +114,6 @@ export class LandingPageComponent implements OnInit {
         // Pagination
         const start = (page - 1) * this.pageSize;
         const end = start + this.pageSize;
-        console.log('Paginated:', filtered.slice(start, end));
 
         return of(filtered.slice(start, end)); // Return the filtered and paginated protocols
       })

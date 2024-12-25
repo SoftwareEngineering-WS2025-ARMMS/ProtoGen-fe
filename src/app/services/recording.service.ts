@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { UploadResponse } from '../models/upload.response';
 
@@ -9,7 +9,7 @@ import { UploadResponse } from '../models/upload.response';
 export class RecordingService {
   private uploadUrl = '/api/upload-audio';
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   uploadAudioFile(file: File): Observable<UploadResponse> {
     const formData = new FormData();
