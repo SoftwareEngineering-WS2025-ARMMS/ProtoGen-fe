@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Annotations, Protocol, Transcript } from '../models/protocol.model';
 import { delay, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProtocolService {
   private url = '/api/annotate';
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   private protocols: Protocol[] = [
     {
