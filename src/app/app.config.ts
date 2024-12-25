@@ -11,8 +11,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { provideKeycloakAngular } from './KeycloakConfig';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { includeBearerTokenInterceptor } from 'keycloak-angular';
 
 registerLocaleData(localeDe);
 
@@ -23,6 +21,5 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     { provide: LOCALE_ID, useValue: 'de-DE' },
     provideKeycloakAngular(),
-    provideHttpClient(withInterceptors([includeBearerTokenInterceptor])),
   ],
 };
