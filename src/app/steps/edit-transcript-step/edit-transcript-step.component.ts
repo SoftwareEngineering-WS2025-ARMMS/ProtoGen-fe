@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Transcript } from '../../models/protocol.model';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class EditTranscriptStepComponent implements OnInit {
   @Input() stepper!: MatStepper;
+  @Output() stepCompleted = new EventEmitter<void>();
+
   transcript: Transcript = { segments: [] };
 
   meetingDate!: string;
@@ -45,6 +47,8 @@ export class EditTranscriptStepComponent implements OnInit {
         next: (response) => {
           sessionStorage.setItem('step4Data', JSON.stringify(response));
           this.requestSent = false;
+          this.stepper.selected!.completed = true;
+          this.stepCompleted.emit(); // Notify parent
           this.stepper.next();
         },
         error: (error) => {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RecordingService } from '../../services/recording.service';
 import { MatStepper } from '@angular/material/stepper';
@@ -14,6 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class UploadStepComponent {
   @Input() stepper!: MatStepper;
+  @Output() stepCompleted = new EventEmitter<void>(); // Notify parent
   selectedFile: File | null = null;
   isUploading = false;
   errorMessage = '';
@@ -39,6 +40,8 @@ export class UploadStepComponent {
         this.isUploading = false;
         this.stepData = response;
         sessionStorage.setItem('step1Data', JSON.stringify(this.stepData));
+        stepper.selected!.completed = true;
+        this.stepCompleted.emit(); // Notify parent
         stepper.next();
       },
       error: (error) => {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
@@ -26,6 +26,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class IdentifySpeakersStepComponent implements OnInit {
   @Input() stepper!: MatStepper;
+  @Output() stepCompleted = new EventEmitter<void>();
   persons: Record<string, string> = {};
   names: Annotations = {};
   personKeys: string[] = [];
@@ -60,6 +61,8 @@ export class IdentifySpeakersStepComponent implements OnInit {
       next: (response) => {
         sessionStorage.setItem('step3Data', JSON.stringify(response));
         this.requestSent = false;
+        this.stepper.selected!.completed = true;
+        this.stepCompleted.emit();
         this.stepper.next();
       },
       error: (error) => {
