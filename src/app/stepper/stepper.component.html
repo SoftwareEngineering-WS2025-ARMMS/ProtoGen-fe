@@ -2,11 +2,11 @@
   <ng-template #stepperIcon>
     <mat-icon>multitrack_audio</mat-icon>
   </ng-template>
-  <mat-step [label]="'Aufnahme'">
+  <mat-step [label]="'Aufnahme'" [completed]="isStep1Completed">
     <div *ngIf="stepper.selectedIndex === 0">
       <app-upload-step
-        (completed)="goNextStep(stepper)"
         [stepper]="stepper"
+        (stepCompleted)="markStepCompleted(1)"
       ></app-upload-step>
     </div>
   </mat-step>
@@ -14,11 +14,11 @@
   <ng-template #stepperIcon>
     <mat-icon>spatial_audio_off</mat-icon>
   </ng-template>
-  <mat-step [label]="'Sprecher Identifizieren'">
+  <mat-step [label]="'Sprecher Identifizieren'" [completed]="isStep2Completed">
     <div *ngIf="stepper.selectedIndex === 1">
       <app-identify-speakers-step
-        (completed)="goNextStep(stepper)"
         [stepper]="stepper"
+        (stepCompleted)="markStepCompleted(2)"
       ></app-identify-speakers-step>
     </div>
   </mat-step>
@@ -26,11 +26,11 @@
   <ng-template #stepperIcon>
     <mat-icon>edit_note</mat-icon>
   </ng-template>
-  <mat-step [label]="'Transkript Bearbeiten'">
+  <mat-step [label]="'Transkript Bearbeiten'" [completed]="isStep3Completed">
     <div *ngIf="stepper.selectedIndex === 2">
       <app-edit-transcript-step
-        (completed)="goNextStep(stepper)"
         [stepper]="stepper"
+        (stepCompleted)="markStepCompleted(3)"
       ></app-edit-transcript-step>
     </div>
   </mat-step>
@@ -38,11 +38,9 @@
   <ng-template #stepperIcon>
     <mat-icon>edit_note</mat-icon>
   </ng-template>
-  <mat-step [label]="'Protokoll Bearbeiten'">
+  <mat-step [label]="'Protokoll Bearbeiten'" [completed]="false">
     <div *ngIf="stepper.selectedIndex === 3">
-      <app-edit-protocol-step
-        (completed)="finishProcess()"
-      ></app-edit-protocol-step>
+      <app-edit-protocol-step></app-edit-protocol-step>
     </div>
   </mat-step>
 
@@ -69,3 +67,33 @@
     ></ng-container>
   </ng-template>
 </mat-horizontal-stepper>
+<div class="sticky-footer">
+  <div class="button-group">
+    <button mat-button class="reset-button" (click)="reset()">
+      <mat-icon>delete</mat-icon> Zurücksetzen
+    </button>
+
+    <button
+      mat-button
+      *ngIf="stepper.selectedIndex > 0"
+      (click)="stepper.previous()"
+      class="back-button"
+    >
+      <mat-icon>arrow_back</mat-icon> Zurück
+    </button>
+
+    <button
+      mat-button
+      *ngIf="stepper.selectedIndex < 3"
+      (click)="stepper.next()"
+      class="next-button"
+      [disabled]="
+        (!isStep1Completed && stepper.selectedIndex === 0) ||
+        (!isStep2Completed && stepper.selectedIndex === 1) ||
+        (!isStep3Completed && stepper.selectedIndex === 2)
+      "
+    >
+      Weiter <mat-icon>arrow_forward</mat-icon>
+    </button>
+  </div>
+</div>
