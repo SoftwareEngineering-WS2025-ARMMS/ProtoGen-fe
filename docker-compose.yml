@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '4200:80'
+    restart: always
+    hostname: https://protogen-armms.rayenmanai.site
+    networks:
+      - armms-network
+
+networks:
+  armms-network:
+    driver: bridge  
