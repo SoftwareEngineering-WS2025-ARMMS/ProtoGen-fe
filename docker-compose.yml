@@ -8,3 +8,10 @@ services:
     ports:
       - '4200:80'
     restart: always
+    hostname: https://protogen-armms.rayenmanai.site
+    networks:
+      - armms-network
+
+networks:
+  armms-network:
+    driver: bridge  
