@@ -13,7 +13,6 @@ body {
 :root {
   @include mat.tooltip-overrides(
     (
-      container-color: #6961fe,
       supporting-text-color: #efeef2,
       container-shape: 16px,
       supporting-text-line-height: 1.5,
@@ -23,8 +22,14 @@ body {
       supporting-text-tracking: 0.5px,
     )
   );
-  .my-custom-tooltip .mdc-tooltip__surface {
+  .primary-tooltip .mdc-tooltip__surface {
     min-width: 400px !important;
     padding: 1rem;
+    background-color: #6961fe;
+    text-align: center;
+  }
+  .secondary-tooltip .mdc-tooltip__surface {
+    padding: 0.5rem;
+    text-align: center;
   }
 }

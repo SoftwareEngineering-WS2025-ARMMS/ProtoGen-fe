@@ -2,7 +2,7 @@
   <i
     class="material-icons tooltip-icon"
     matTooltip="Hier haben Sie die Möglichkeit das vorgeschlagene Protokoll zu verändern, als PDF zu exportieren und abzuspeichern."
-    matTooltipClass="my-custom-tooltip"
+    matTooltipClass="primary-tooltip"
     matTooltipPosition="below"
     >info</i
   >
@@ -87,6 +87,7 @@
         mat-icon-button
         class="delete-item-button"
         matTooltip="Tagesordnungspunkt löschen"
+        matTooltipClass="secondary-tooltip"
         [matTooltipPosition]="'right'"
         (click)="deleteAgendaItem(i)"
       >
@@ -97,6 +98,7 @@
       mat-icon-button
       class="add-item-button"
       matTooltip="Tagesordnungspunkt hinzufügen"
+      matTooltipClass="secondary-tooltip"
       [matTooltipPosition]="'right'"
       (click)="addAgendaItem()"
       [disabled]="protocol.agendaItems.length >= 10"
@@ -107,6 +109,7 @@
       class="export-button"
       mat-icon-button
       matTooltip="Als PDF exportieren"
+      matTooltipClass="secondary-tooltip"
       [matTooltipPosition]="'right'"
       (click)="exportToPDF()"
     >

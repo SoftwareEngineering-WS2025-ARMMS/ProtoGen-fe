@@ -26,7 +26,7 @@
 }
 
 .chat-bubble {
-  background: #f3eade;
+  background: #ebeef2;
   border-radius: 20px;
   margin: 10px 0;
   padding: 10px 15px;
@@ -53,13 +53,28 @@
 
 .chat-bubble .text-section .text-input {
   border: none;
-  width: 100%;
+  width: 95%;
   resize: none;
   background-color: transparent;
   font-size: 14px;
   line-height: 1.4;
   outline: none;
   color: #222222;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.chat-bubble .text-section .text-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.delete-item-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .save-button {
@@ -68,16 +83,4 @@
   width: fit-content;
   padding: 8px 16px;
   border-radius: 16px;
-}
-
-.chat-bubble:nth-child(even) {
-  background: #ebeef2;
-  text-align: right;
-  .speaker-input {
-    text-align: right;
-  }
-}
-
-.chat-bubble:nth-child(even) .text-section .text-input {
-  color: #222222;
 }

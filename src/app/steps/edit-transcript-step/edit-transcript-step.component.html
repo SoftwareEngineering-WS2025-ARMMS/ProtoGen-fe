@@ -7,7 +7,7 @@
     <i
       class="material-icons tooltip-icon"
       matTooltip="Hier haben Sie die Möglichkeit, das Protokoll der Sitzung zu ändern. Klicken Sie anschließend auf Protokoll generieren"
-      matTooltipClass="my-custom-tooltip"
+      matTooltipClass="primary-tooltip"
       matTooltipPosition="below"
       >info</i
     >
@@ -16,12 +16,7 @@
       class="chat-bubble"
     >
       <div class="speaker-section">
-        <input
-          id="speaker-{{ i }}"
-          [(ngModel)]="segment.speaker"
-          placeholder="Sprecher"
-          class="speaker-input"
-        />
+        <span class="speaker-input">{{ segment.speaker }}</span>
       </div>
       <div class="text-section">
         <textarea
@@ -31,6 +26,16 @@
           class="text-input"
         ></textarea>
       </div>
+      <button
+        mat-icon-button
+        class="delete-item-button"
+        matTooltip="löschen"
+        matTooltipClass="secondary-tooltip"
+        [matTooltipPosition]="'right'"
+        (click)="deleteSegment(i)"
+      >
+        <i class="material-icons">delete</i>
+      </button>
     </div>
   </div>
   <button class="save-button" (click)="saveTranscript()">
