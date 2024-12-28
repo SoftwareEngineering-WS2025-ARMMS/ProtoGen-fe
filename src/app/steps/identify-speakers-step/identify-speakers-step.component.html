@@ -1,8 +1,15 @@
-<div class="person-card-container">
-  <div *ngIf="requestSent; else content">
-    <mat-spinner></mat-spinner>
-  </div>
-  <ng-template #content>
+<div *ngIf="requestSent; else content">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #content>
+  <div class="persons-container">
+    <i
+      class="material-icons tooltip-icon"
+      matTooltip="Identifizieren Sie die Personen, die an dem Treffen teilgenommen haben, anhand einiger ihrer Beiträge"
+      matTooltipClass="my-custom-tooltip"
+      matTooltipPosition="below"
+      >info</i
+    >
     <div class="person-list">
       <mat-card *ngFor="let person of personKeys" class="person-card">
         <div class="card-content">
@@ -22,15 +29,15 @@
         </div>
       </mat-card>
     </div>
-    <div class="save-button-container">
-      <button
-        mat-raised-button
-        class="save-button"
-        color="primary"
-        (click)="saveAll()"
-      >
-        Speichern
-      </button>
-    </div>
-  </ng-template>
-</div>
+  </div>
+  <div class="save-button-container">
+    <button
+      mat-raised-button
+      class="save-button"
+      color="primary"
+      (click)="saveAll()"
+    >
+      Speichern
+    </button>
+  </div>
+</ng-template>

@@ -9,6 +9,7 @@ import { ProtocolService } from '../../services/protocol.service';
 import { Annotations } from '../../models/protocol.model';
 import { MatStepper } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-identify-speakers-step',
@@ -20,6 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInput,
     MatIcon,
     MatProgressSpinnerModule,
+    MatTooltip,
   ],
   templateUrl: './identify-speakers-step.component.html',
   styleUrl: './identify-speakers-step.component.scss',

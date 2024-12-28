@@ -5,10 +5,11 @@ import { MatStepper } from '@angular/material/stepper';
 import { UploadResponse } from '../../models/upload.response';
 import { NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-upload-step',
-  imports: [MatIcon, NgIf, MatProgressSpinnerModule],
+  imports: [MatIcon, NgIf, MatProgressSpinnerModule, MatTooltip],
   templateUrl: './upload-step.component.html',
   styleUrl: './upload-step.component.scss',
 })

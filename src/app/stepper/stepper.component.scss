@@ -12,6 +12,11 @@ mat-horizontal-stepper {
   margin: 0 auto;
 }
 
+.mat-step-text-label {
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .sticky-footer {
   position: sticky;
   bottom: 0;
@@ -45,12 +50,4 @@ mat-horizontal-stepper {
 
 .sticky-footer button mat-icon {
   font-size: 20px;
-}
-
-.sticky-footer .reset-button {
-  color: white;
-}
-
-.sticky-footer .back-button {
-  color: white;
 }

@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { ProtocolService } from '../../services/protocol.service';
 import { MatStepper } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-edit-transcript-step',
-  imports: [NgFor, NgIf, FormsModule, MatProgressSpinnerModule],
+  imports: [NgFor, NgIf, FormsModule, MatProgressSpinnerModule, MatTooltip],
   templateUrl: './edit-transcript-step.component.html',
   styleUrl: './edit-transcript-step.component.scss',
 })

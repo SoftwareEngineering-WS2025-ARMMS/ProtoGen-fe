@@ -14,7 +14,6 @@
         hidden
       />
     </label>
-
     <button
       mat-raised-button
       color="primary"
@@ -24,7 +23,14 @@
     >
       Aufnahme hochladen
     </button>
-
+    <i
+      class="material-icons tooltip-icon"
+      matTooltip="Laden Sie die Aufzeichnung des Meetings hoch und warten Sie auf den nächsten Schritt"
+      matTooltipClass="my-custom-tooltip"
+      matTooltipPosition="below"
+    >
+      info</i
+    >
     <div class="error-message" *ngIf="errorMessage">
       {{ errorMessage }}
     </div>
