@@ -1,12 +1,28 @@
-.person-card-container {
+.persons-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 600px;
-  margin: auto;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: auto;
+  width: 700px;
+  height: 700px;
+  background-color: #f5f5f5;
+  position: relative;
+}
+
+.tooltip-icon {
+  color: #424242;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding-bottom: 1rem;
+  position: absolute;
+  right: 10px;
 }
 
 .person-list {
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -61,7 +77,7 @@
 
 .save-button {
   display: flex;
-  margin: 0 auto;
+  margin: 20px auto;
   width: fit-content;
   padding: 8px 16px;
   border-radius: 16px;

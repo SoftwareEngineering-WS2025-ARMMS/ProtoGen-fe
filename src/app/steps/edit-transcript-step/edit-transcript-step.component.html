@@ -4,6 +4,13 @@
 </div>
 <ng-template #content>
   <div class="chat-container">
+    <i
+      class="material-icons tooltip-icon"
+      matTooltip="Hier haben Sie die Möglichkeit, das Protokoll der Sitzung zu ändern. Klicken Sie anschließend auf Protokoll generieren"
+      matTooltipClass="my-custom-tooltip"
+      matTooltipPosition="below"
+      >info</i
+    >
     <div
       *ngFor="let segment of transcript.segments; let i = index"
       class="chat-bubble"
