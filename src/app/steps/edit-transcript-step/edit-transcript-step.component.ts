@@ -6,10 +6,18 @@ import { ProtocolService } from '../../services/protocol.service';
 import { MatStepper } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-edit-transcript-step',
-  imports: [NgFor, NgIf, FormsModule, MatProgressSpinnerModule, MatTooltip],
+  imports: [
+    NgFor,
+    NgIf,
+    FormsModule,
+    MatProgressSpinnerModule,
+    MatTooltip,
+    MatIconButton,
+  ],
   templateUrl: './edit-transcript-step.component.html',
   styleUrl: './edit-transcript-step.component.scss',
 })
@@ -37,6 +45,15 @@ export class EditTranscriptStepComponent implements OnInit {
       this.transcript.segments.map((s) => s.speaker)
     );
     this.attendees = uniqueSpeakers.size;
+  }
+
+  deleteSegment(index: number) {
+    const confirmation = confirm(
+      `Möchten Sie diesen Beitrag wirklich löschen?`
+    );
+    if (confirmation) {
+      this.transcript.segments.splice(index, 1);
+    }
   }
 
   saveTranscript(): void {
