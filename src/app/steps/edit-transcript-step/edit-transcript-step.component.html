@@ -1,6 +1,6 @@
 <!-- Chat Interface -->
 <div *ngIf="requestSent; else content">
-  <mat-spinner></mat-spinner>
+  <app-custom-text-loader></app-custom-text-loader>
 </div>
 <ng-template #content>
   <div class="chat-container">

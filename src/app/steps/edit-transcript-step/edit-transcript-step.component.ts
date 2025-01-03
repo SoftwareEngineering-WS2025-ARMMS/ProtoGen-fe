@@ -7,6 +7,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconButton } from '@angular/material/button';
+import { CustomTextLoaderComponent } from '../../custom-loaders/custom-text-loader/custom-text-loader.component';
 
 @Component({
   selector: 'app-edit-transcript-step',
@@ -17,6 +18,7 @@ import { MatIconButton } from '@angular/material/button';
     MatProgressSpinnerModule,
     MatTooltip,
     MatIconButton,
+    CustomTextLoaderComponent,
   ],
   templateUrl: './edit-transcript-step.component.html',
   styleUrl: './edit-transcript-step.component.scss',

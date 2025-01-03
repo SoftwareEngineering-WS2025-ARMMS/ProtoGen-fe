@@ -1,6 +1,6 @@
 <div class="container">
   <div *ngIf="isUploading; else content">
-    <mat-spinner></mat-spinner>
+    <app-custom-audio-loader></app-custom-audio-loader>
   </div>
   <ng-template #content>
     <label for="fileInput" class="custom-file-label">

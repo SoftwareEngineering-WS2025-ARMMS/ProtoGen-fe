@@ -6,10 +6,17 @@ import { UploadResponse } from '../../models/upload.response';
 import { NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
+import { CustomAudioLoaderComponent } from '../../custom-loaders/custom-audio-loader/custom-audio-loader.component';
 
 @Component({
   selector: 'app-upload-step',
-  imports: [MatIcon, NgIf, MatProgressSpinnerModule, MatTooltip],
+  imports: [
+    MatIcon,
+    NgIf,
+    MatProgressSpinnerModule,
+    MatTooltip,
+    CustomAudioLoaderComponent,
+  ],
   templateUrl: './upload-step.component.html',
   styleUrl: './upload-step.component.scss',
 })
