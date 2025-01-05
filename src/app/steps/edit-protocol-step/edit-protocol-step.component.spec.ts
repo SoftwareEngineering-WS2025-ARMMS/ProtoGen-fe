@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditProtocolStepComponent } from './edit-protocol-step.component';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('EditProtocolStepComponent', () => {
   let component: EditProtocolStepComponent;
@@ -8,9 +10,9 @@ describe('EditProtocolStepComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditProtocolStepComponent]
-    })
-    .compileComponents();
+      imports: [EditProtocolStepComponent],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EditProtocolStepComponent);
     component = fixture.componentInstance;

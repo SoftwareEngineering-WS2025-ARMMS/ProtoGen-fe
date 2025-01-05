@@ -60,7 +60,7 @@
     <!-- Pagination -->
     <mat-paginator
       class="paginator"
-      [length]="(protocols$ | async)!.length"
+      [length]="(protocols$ | async)?.length"
       [pageSize]="pageSize"
       [pageSizeOptions]="[3, 6, 9]"
       (page)="handlePageEvent($event)"

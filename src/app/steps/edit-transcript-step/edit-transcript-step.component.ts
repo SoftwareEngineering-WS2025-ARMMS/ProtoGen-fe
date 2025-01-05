@@ -66,7 +66,7 @@ export class EditTranscriptStepComponent implements OnInit {
     this.requestSent = true;
     sessionStorage.setItem('step3Data', JSON.stringify(this.transcript));
     this.protocolService
-      .sendTranscriptToBackendmocked(this.transcript)
+      .sendTranscriptToBackend(this.transcript)
       .subscribe({
         next: (response) => {
           sessionStorage.setItem('step4Data', JSON.stringify(response));
