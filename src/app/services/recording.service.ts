@@ -22,6 +22,7 @@ export class RecordingService {
     const formData = new FormData();
     formData.append('file', file);
     const mockResponse: UploadResponse = {
+      id: 'abcdefg',
       persons: {
         person0:
           'Willkommen zu unserem heutigen Treffen! Wir haben viel zu besprechen, also lasst uns direkt anfangen.',
