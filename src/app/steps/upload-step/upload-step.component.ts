@@ -7,6 +7,7 @@ import { NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
 import { CustomAudioLoaderComponent } from '../../custom-loaders/custom-audio-loader/custom-audio-loader.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-upload-step',
@@ -30,7 +31,10 @@ export class UploadStepComponent {
   // Data to pass to the next step
   stepData: UploadResponse | null = null;
 
-  constructor(private fileUploadService: RecordingService) {}
+  constructor(
+    private fileUploadService: RecordingService,
+    private snackBar: MatSnackBar
+  ) {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -54,10 +58,17 @@ export class UploadStepComponent {
       },
       error: (error) => {
         this.isUploading = false;
-        this.errorMessage =
-          'Fehler beim Hochladen der Aufnahme. Bitte versuchen Sie es erneut.';
+        this.showError(
+          'Fehler beim Hochladen der Aufnahme. Bitte versuchen Sie es erneut.'
+        );
         console.error(error);
       },
+    });
+  }
+
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Schließen', {
+      duration: 5000,
     });
   }
 }

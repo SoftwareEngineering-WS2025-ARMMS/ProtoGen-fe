@@ -8,6 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatIconButton } from '@angular/material/button';
 import { CustomTextLoaderComponent } from '../../custom-loaders/custom-text-loader/custom-text-loader.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-transcript-step',
@@ -35,7 +36,10 @@ export class EditTranscriptStepComponent implements OnInit {
 
   requestSent = false;
 
-  constructor(private protocolService: ProtocolService) {}
+  constructor(
+    private protocolService: ProtocolService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.meetingDate = new Date().toISOString().split('T')[0];
@@ -73,8 +77,17 @@ export class EditTranscriptStepComponent implements OnInit {
         },
         error: (error) => {
           this.requestSent = false;
+          this.showError(
+            'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+          );
           console.error('Failed to save transcript:', error);
         },
       });
+  }
+
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Schließen', {
+      duration: 5000,
+    });
   }
 }

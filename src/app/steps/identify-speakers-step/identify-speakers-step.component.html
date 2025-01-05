@@ -11,11 +11,16 @@
       >info</i
     >
     <div class="person-list">
-      <mat-card *ngFor="let person of personKeys" class="person-card">
+      <mat-card
+        *ngFor="let person of personKeys; index as i"
+        class="person-card"
+      >
         <div class="card-content">
           <div class="top-section">
             <mat-icon class="person-icon">person</mat-icon>
-            <mat-card-title class="person-name">{{ person }}</mat-card-title>
+            <mat-card-title class="person-name"
+              >Sprecher {{ i + 1 }}
+            </mat-card-title>
           </div>
           <div class="text-section">
             <p class="person-text">{{ persons[person] }}</p>

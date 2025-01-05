@@ -10,6 +10,7 @@ import { Annotations } from '../../models/protocol.model';
 import { MatStepper } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-identify-speakers-step',
@@ -34,7 +35,10 @@ export class IdentifySpeakersStepComponent implements OnInit {
   personKeys: string[] = [];
   requestSent = false;
 
-  constructor(private protocolService: ProtocolService) {}
+  constructor(
+    private protocolService: ProtocolService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     const savedData = sessionStorage.getItem('step1Data');
@@ -69,8 +73,17 @@ export class IdentifySpeakersStepComponent implements OnInit {
       },
       error: (error) => {
         this.requestSent = false;
+        this.showError(
+          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+        );
         console.error('Failed to save name:', error);
       },
+    });
+  }
+
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Schließen', {
+      duration: 5000,
     });
   }
 }
