@@ -47,10 +47,11 @@ export class UploadStepComponent {
   uploadFile(stepper: MatStepper): void {
     this.isUploading = true;
 
-    this.fileUploadService.uploadAudioMock(this.selectedFile!).subscribe({
+    this.fileUploadService.uploadAudioFile(this.selectedFile!).subscribe({
       next: (response: UploadResponse) => {
         this.isUploading = false;
         this.stepData = response;
+        sessionStorage.setItem('protocolID', response.id)
         sessionStorage.setItem('step1Data', JSON.stringify(this.stepData));
         stepper.selected!.completed = true;
         this.stepCompleted.emit(); // Notify parent

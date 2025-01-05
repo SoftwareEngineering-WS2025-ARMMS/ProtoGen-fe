@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Annotations, Protocol, Transcript } from '../models/protocol.model';
 import { delay, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -102,7 +102,7 @@ export class ProtocolService {
   ];
 
   getProtocols(): Observable<Protocol[]> {
-    return of(this.protocols);
+    return this.http.get<Protocol[]>('/api/protocols') ?? [];
   }
 
   getProtocolById(id: string): Protocol | undefined {
@@ -110,7 +110,7 @@ export class ProtocolService {
   }
 
   sendAnnotations(annotations: Annotations): Observable<Transcript> {
-    return this.http.post<Transcript>(this.url, annotations);
+    return this.http.post<Transcript>(this.url, annotations, {params: new HttpParams().set('id', sessionStorage.getItem('protocolID') ?? '')});
   }
 
   sendAnnotationsMocked(annotations: Annotations): Observable<Transcript> {
@@ -176,7 +176,7 @@ export class ProtocolService {
   }
 
   sendTranscriptToBackend(transcript: Transcript): Observable<Protocol> {
-    return this.http.post<Protocol>('/api/transcript', transcript);
+    return this.http.post<Protocol>('/api/transcript', transcript, {params: new HttpParams().set('id', sessionStorage.getItem('protocolID') ?? '')});
   }
 
   sendTranscriptToBackendmocked(transcript: Transcript): Observable<Protocol> {
@@ -206,4 +206,9 @@ export class ProtocolService {
 
     return of(mockProtocol).pipe(delay(4000)); // Simulates backend delay
   }
+
+  saveProtocolToBackend(protocol: Protocol): Observable<object> {
+    return this.http.post<object>('/api/protocol', protocol, {params: new HttpParams().set('id', sessionStorage.getItem('protocolID') ?? '')})
+  }
+
 }
