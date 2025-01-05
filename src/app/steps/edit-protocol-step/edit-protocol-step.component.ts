@@ -6,6 +6,7 @@ import { MatIconButton } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { exportToPDF } from '../../utils/pdf-exporter';
 import { ProtocolService } from '../../services/protocol.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-protocol-step',
@@ -16,7 +17,10 @@ import { ProtocolService } from '../../services/protocol.service';
 export class EditProtocolStepComponent implements OnInit {
   protocol!: Protocol;
 
-  constructor(private protocolService: ProtocolService) {}
+  constructor(
+    private protocolService: ProtocolService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     const storedProtocol = sessionStorage.getItem('step4Data');
@@ -44,13 +48,23 @@ export class EditProtocolStepComponent implements OnInit {
   saveProtocol() {
     sessionStorage.setItem('step4Data', JSON.stringify(this.protocol));
     this.protocolService.saveProtocolToBackend(this.protocol).subscribe({
-      next: (value) => console.log('Protocol updated and saved:', this.protocol),
-      error: (error) => console.log('Protocol was not saved:', error),
-    })
-
+      next: () => console.log('Protocol updated and saved:', this.protocol),
+      error: (error) => {
+        console.log('Protocol was not saved:', error);
+        this.showError(
+          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+        );
+      },
+    });
   }
 
   exportToPDF() {
     exportToPDF(this.protocol);
+  }
+
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Schließen', {
+      duration: 5000,
+    });
   }
 }
