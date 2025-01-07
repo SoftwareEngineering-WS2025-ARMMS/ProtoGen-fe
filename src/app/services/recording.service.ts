@@ -7,7 +7,7 @@ import { UploadResponse } from '../models/upload.response';
   providedIn: 'root',
 })
 export class RecordingService {
-  private uploadUrl = '/api/upload-audio';
+  private uploadUrl = 'http://localhost:5000/api/upload-audio';
 
   private http = inject(HttpClient);
 

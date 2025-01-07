@@ -7,7 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProtocolService {
-  private url = '/api/annotate';
+  private url = 'http://localhost:5000';
 
   private http = inject(HttpClient);
 
@@ -102,7 +102,7 @@ export class ProtocolService {
   ];
 
   getProtocols(): Observable<Protocol[]> {
-    return this.http.get<Protocol[]>('/api/protocols') ?? [];
+    return this.http.get<Protocol[]>(`${this.url}/api/protocols`) ?? [];
   }
 
   getProtocolById(id: string): Protocol | undefined {
@@ -110,7 +110,12 @@ export class ProtocolService {
   }
 
   sendAnnotations(annotations: Annotations): Observable<Transcript> {
-    return this.http.post<Transcript>(this.url, annotations, {params: new HttpParams().set('id', sessionStorage.getItem('protocolID') ?? '')});
+    return this.http.post<Transcript>(`${this.url}/api/annotate`, annotations, {
+      params: new HttpParams().set(
+        'id',
+        sessionStorage.getItem('protocolID') ?? ''
+      ),
+    });
   }
 
   sendAnnotationsMocked(annotations: Annotations): Observable<Transcript> {
@@ -176,7 +181,12 @@ export class ProtocolService {
   }
 
   sendTranscriptToBackend(transcript: Transcript): Observable<Protocol> {
-    return this.http.post<Protocol>('/api/transcript', transcript, {params: new HttpParams().set('id', sessionStorage.getItem('protocolID') ?? '')});
+    return this.http.post<Protocol>(`${this.url}/api/transcript`, transcript, {
+      params: new HttpParams().set(
+        'id',
+        sessionStorage.getItem('protocolID') ?? ''
+      ),
+    });
   }
 
   sendTranscriptToBackendmocked(transcript: Transcript): Observable<Protocol> {
@@ -208,7 +218,11 @@ export class ProtocolService {
   }
 
   saveProtocolToBackend(protocol: Protocol): Observable<object> {
-    return this.http.post<object>('/api/protocol', protocol, {params: new HttpParams().set('id', sessionStorage.getItem('protocolID') ?? '')})
+    return this.http.post<object>(`${this.url}/api/protocol`, protocol, {
+      params: new HttpParams().set(
+        'id',
+        sessionStorage.getItem('protocolID') ?? ''
+      ),
+    });
   }
-
 }
