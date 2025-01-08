@@ -11,7 +11,8 @@ services:
     hostname: https://protogen-armms.rayenmanai.site
     networks:
       - armms-network
+    container_name: protogen-fe-app
 
 networks:
   armms-network:
-    driver: bridge  
+    driver: bridge
