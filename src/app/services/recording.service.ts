@@ -7,8 +7,7 @@ import { UploadResponse } from '../models/upload.response';
   providedIn: 'root',
 })
 export class RecordingService {
-  private uploadUrl =
-    'https://protogen-be-armms.rayenmanai.site/api/upload-audio';
+  private uploadUrl = 'https://armms-protogen-be.aorief.com/api/upload-audio';
 
   private http = inject(HttpClient);
 
