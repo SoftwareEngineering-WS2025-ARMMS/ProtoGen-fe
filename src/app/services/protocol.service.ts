@@ -7,7 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProtocolService {
-  private url = 'http://localhost:5000';
+  private url = 'https://protogen-be-armms.rayenmanai.site';
 
   private http = inject(HttpClient);
 

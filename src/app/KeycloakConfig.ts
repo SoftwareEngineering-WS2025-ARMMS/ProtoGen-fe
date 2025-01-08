@@ -12,7 +12,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 const localhostCondition =
   createInterceptorCondition<IncludeBearerTokenCondition>({
-    urlPattern: /^(\/api)(\/.*)?$/i, // TODO: fix this to match the backend api
+    urlPattern: /^(https:\/\/protogen-be-armms.rayenmanai.site\/api)(\/.*)?$/i, // TODO: fix this to match the backend api
     bearerPrefix: 'Bearer',
   });
 
