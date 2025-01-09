@@ -65,24 +65,22 @@ export class EditTranscriptStepComponent implements OnInit {
   saveTranscript(): void {
     this.requestSent = true;
     sessionStorage.setItem('step3Data', JSON.stringify(this.transcript));
-    this.protocolService
-      .sendTranscriptToBackend(this.transcript)
-      .subscribe({
-        next: (response) => {
-          sessionStorage.setItem('step4Data', JSON.stringify(response));
-          this.requestSent = false;
-          this.stepper.selected!.completed = true;
-          this.stepCompleted.emit(); // Notify parent
-          this.stepper.next();
-        },
-        error: (error) => {
-          this.requestSent = false;
-          this.showError(
-            'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
-          );
-          console.error('Failed to save transcript:', error);
-        },
-      });
+    this.protocolService.sendTranscriptToBackend(this.transcript).subscribe({
+      next: (response) => {
+        sessionStorage.setItem('step4Data', JSON.stringify(response));
+        this.requestSent = false;
+        this.stepper.selected!.completed = true;
+        this.stepCompleted.emit(); // Notify parent
+        this.stepper.next();
+      },
+      error: (error) => {
+        this.requestSent = false;
+        this.showError(
+          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+        );
+        console.error('Failed to save transcript:', error);
+      },
+    });
   }
 
   private showError(message: string): void {

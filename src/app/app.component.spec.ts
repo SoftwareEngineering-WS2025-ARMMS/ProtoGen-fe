@@ -1,12 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { provideKeycloakAngular } from './KeycloakConfig';
+import { of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
+    const activatedRouteMock = {
+      snapshot: { paramMap: {} },
+      queryParamMap: of({}),
+    };
+
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [provideKeycloakAngular()],
+      providers: [
+        provideKeycloakAngular(),
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
+      ],
     }).compileComponents();
   });
 

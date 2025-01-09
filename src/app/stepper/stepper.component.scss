@@ -4,7 +4,7 @@ mat-horizontal-stepper {
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   height: 80vh;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .mat-horizontal-content-container {
@@ -18,16 +18,16 @@ mat-horizontal-stepper {
 }
 
 .sticky-footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   display: flex;
   margin: 0 auto;
-  z-index: 1000;
   width: 100%;
   padding: 15px 0;
   background-color: #f5f5f5;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  height: 5vh;
 }
 
 .sticky-footer .button-group {

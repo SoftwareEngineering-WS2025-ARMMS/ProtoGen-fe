@@ -10,11 +10,10 @@ import {
 import { environment } from '../environment/environment.prod';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
-const localhostCondition =
-  createInterceptorCondition<IncludeBearerTokenCondition>({
-    urlPattern: /^(https:\/\/armms-protogen-be.aorief.com\/api)(\/.*)?$/i, // TODO: fix this to match the backend api
-    bearerPrefix: 'Bearer',
-  });
+const condition = createInterceptorCondition<IncludeBearerTokenCondition>({
+  urlPattern: /^.*$/i, // TODO: fix this to match the backend api, for now matching all patterns
+  bearerPrefix: 'Bearer',
+});
 
 export const provideKeycloakAngular = () =>
   provideKeycloak({
@@ -28,7 +27,7 @@ export const provideKeycloakAngular = () =>
       UserActivityService,
       {
         provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
-        useValue: [localhostCondition],
+        useValue: [condition],
       },
       provideHttpClient(withInterceptors([includeBearerTokenInterceptor])),
     ],
