@@ -7,6 +7,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { exportToPDF } from '../../utils/pdf-exporter';
 import { ProtocolService } from '../../services/protocol.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-protocol-step',
@@ -19,7 +21,8 @@ export class EditProtocolStepComponent implements OnInit {
 
   constructor(
     private protocolService: ProtocolService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -48,7 +51,12 @@ export class EditProtocolStepComponent implements OnInit {
   saveProtocol() {
     sessionStorage.setItem('step4Data', JSON.stringify(this.protocol));
     this.protocolService.saveProtocolToBackend(this.protocol).subscribe({
-      next: () => console.log('Protocol updated and saved:', this.protocol),
+      next: () => {
+        console.log('Protocol updated and saved:', this.protocol);
+        this.dialog.open(SuccessDialogComponent, {
+          data: { protocol: this.protocol },
+        });
+      },
       error: (error) => {
         console.log('Protocol was not saved:', error);
         this.showError(

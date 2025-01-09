@@ -1,9 +1,10 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import Keycloak from 'keycloak-js';
 @Component({
   selector: 'app-header',
-  imports: [NgIf],
+  imports: [NgIf, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

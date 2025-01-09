@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { ProtocolService } from '../services/protocol.service';
 import {
   BehaviorSubject,
+  catchError,
   combineLatest,
   Observable,
   of,
@@ -25,6 +26,7 @@ import {
 } from '@angular/material/paginator';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatPaginatorIntlDe } from '../utils/custom-paginator-intl-de';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-landing-page',
@@ -65,11 +67,21 @@ export class LandingPageComponent implements OnInit {
 
   constructor(
     private protocolService: ProtocolService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.protocols$ = this.protocolService.getProtocols();
+    this.protocols$ = this.protocolService.getProtocols().pipe(
+      catchError(() => {
+        this.snackBar.open(
+          'Fehler beim Laden der Protokolle Ihrer Organisation. Bitte versuchen Sie es später erneut.',
+          'Schließen',
+          { duration: 5000 }
+        );
+        return of([]);
+      })
+    );
 
     // Combine the protocols with filters and paginate using switchMap
     this.filteredProtocols$ = combineLatest([

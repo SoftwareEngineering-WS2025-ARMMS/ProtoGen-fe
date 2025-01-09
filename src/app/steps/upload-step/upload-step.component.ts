@@ -51,7 +51,7 @@ export class UploadStepComponent {
       next: (response: UploadResponse) => {
         this.isUploading = false;
         this.stepData = response;
-        sessionStorage.setItem('protocolID', response.id)
+        sessionStorage.setItem('protocolID', response.id);
         sessionStorage.setItem('step1Data', JSON.stringify(this.stepData));
         stepper.selected!.completed = true;
         this.stepCompleted.emit(); // Notify parent
@@ -60,7 +60,7 @@ export class UploadStepComponent {
       error: (error) => {
         this.isUploading = false;
         this.showError(
-          'Fehler beim Hochladen der Aufnahme. Bitte versuchen Sie es erneut.'
+          'Fehler beim Hochladen der Aufnahme. Bitte versuchen Sie es später erneut.'
         );
         console.error(error);
       },
