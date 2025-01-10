@@ -38,7 +38,7 @@ export class SuccessDialogComponent {
     formData.append('file', pdfBlob, `Protokoll_${this.protocol.date}.pdf`);
 
     this.http
-      .post(`${environment.dropboxUrl}/upload_file`, formData)
+      .post(`${environment.dropboxUrl}/upload_file/`, formData)
       .subscribe({
         next: (response) => {
           console.log('File uploaded successfully:', response);
