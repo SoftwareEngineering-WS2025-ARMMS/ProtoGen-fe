@@ -2,13 +2,13 @@ import { inject, Injectable } from '@angular/core';
 import { Annotations, Protocol, Transcript } from '../models/protocol.model';
 import { delay, Observable, of } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProtocolService {
-  private url = 'https://armms-protogen-be.aorief.com';
-  //private url = 'http://localhost:5000';
+  private url = environment.apiUrl;
 
   private http = inject(HttpClient);
 

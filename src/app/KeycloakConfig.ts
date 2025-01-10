@@ -7,7 +7,7 @@ import {
   INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
   includeBearerTokenInterceptor,
 } from 'keycloak-angular';
-import { environment } from '../environment/environment.prod';
+import { environment } from '../environment/environment';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 const condition = createInterceptorCondition<IncludeBearerTokenCondition>({

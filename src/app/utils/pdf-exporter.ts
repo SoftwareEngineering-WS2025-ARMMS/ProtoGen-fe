@@ -3,6 +3,15 @@ import autoTable from 'jspdf-autotable';
 import { Protocol } from '../models/protocol.model';
 
 export function exportToPDF(protocol: Protocol) {
+  buildPDF(protocol).save(`Protokoll_${protocol.date}.pdf`);
+}
+
+export function getPDFBlob(protocol: Protocol): Blob {
+  const pdfBlob = buildPDF(protocol).output('blob');
+  return pdfBlob;
+}
+
+function buildPDF(protocol: Protocol): jsPDF {
   const doc = new jsPDF({
     orientation: 'p',
     unit: 'mm',
@@ -70,6 +79,5 @@ export function exportToPDF(protocol: Protocol) {
       font: 'helvetica',
     },
   });
-
-  doc.save(`Protokoll_${protocol.date}.pdf`);
+  return doc;
 }
