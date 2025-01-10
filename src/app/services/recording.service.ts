@@ -17,7 +17,7 @@ export class RecordingService {
     formData.append('file', file);
 
     return this.http.post<UploadResponse>(
-      `${this.uploadUrl}/upload-audio`,
+      `${this.uploadUrl}/api/upload-audio`,
       formData
     );
   }
