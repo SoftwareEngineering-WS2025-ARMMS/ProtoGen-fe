@@ -6,7 +6,7 @@ import {
   MatDialogClose,
   MatDialogContent,
 } from '@angular/material/dialog';
-import { NgFor } from '@angular/common';
+import { DatePipe, NgFor } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -22,6 +22,7 @@ import { exportToPDF } from '../../utils/pdf-exporter';
     MatDialogContent,
     MatDialogActions,
     MatTooltip,
+    DatePipe,
   ],
   templateUrl: './protocol-detail.component.html',
   styleUrl: './protocol-detail.component.scss',

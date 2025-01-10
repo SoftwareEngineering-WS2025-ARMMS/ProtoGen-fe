@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { UploadResponse } from '../models/upload.response';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecordingService {
-  private uploadUrl = 'https://armms-protogen-be.aorief.com/api/upload-audio';
-  //private uploadUrl = 'http://localhost:5000/api/upload-audio';
+  private uploadUrl = environment.apiUrl;
 
   private http = inject(HttpClient);
 
@@ -16,7 +16,10 @@ export class RecordingService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post<UploadResponse>(this.uploadUrl, formData);
+    return this.http.post<UploadResponse>(
+      `${this.uploadUrl}/upload-audio`,
+      formData
+    );
   }
 
   uploadAudioMock(file: File): Observable<UploadResponse> {
