@@ -52,13 +52,11 @@ export class EditProtocolStepComponent implements OnInit {
     sessionStorage.setItem('step4Data', JSON.stringify(this.protocol));
     this.protocolService.saveProtocolToBackend(this.protocol).subscribe({
       next: () => {
-        console.log('Protocol updated and saved:', this.protocol);
         this.dialog.open(SuccessDialogComponent, {
           data: { protocol: this.protocol },
         });
       },
-      error: (error) => {
-        console.log('Protocol was not saved:', error);
+      error: () => {
         this.showError(
           'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
         );

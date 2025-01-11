@@ -18,13 +18,11 @@ export class HeaderComponent implements OnInit {
       const profile = await this.keycloak.loadUserProfile();
       const organizationInfo = this.keycloak.tokenParsed?.['organization_info'];
 
-      //let organizationId = 'Unknown ID';
       let organizationName = 'Unknown Organization';
 
       if (organizationInfo) {
         const orgKey = Object.keys(organizationInfo)[0]; // Get the first key dynamically
         const orgData = organizationInfo[orgKey]; // Access the data under the dynamic key
-        //organizationId = orgData?.id || organizationId;
         organizationName = orgData?.Name?.[0] || organizationName;
         this.logo_url = orgData?.logo_url?.[0];
       }
