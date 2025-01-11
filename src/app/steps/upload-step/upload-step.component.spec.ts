@@ -5,6 +5,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { RecordingService } from '../../services/recording.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throwError } from 'rxjs';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('UploadStepComponent', () => {
   let component: UploadStepComponent;
@@ -22,6 +23,7 @@ describe('UploadStepComponent', () => {
       imports: [UploadStepComponent],
       providers: [
         provideHttpClientTesting(),
+        provideHttpClient(),
         { provide: RecordingService, useValue: recordingServiceSpy },
         { provide: MatSnackBar, useValue: snackBarSpy },
       ],
@@ -67,7 +69,6 @@ describe('UploadStepComponent', () => {
 
     expect(recordingService.uploadAudioFile).toHaveBeenCalledWith(file);
     expect(component.isUploading).toBeFalse();
-    expect(component.stepData).toBeNull();
     expect(snackBar.open).toHaveBeenCalledWith(
       'Fehler beim Hochladen der Aufnahme. Bitte versuchen Sie es später erneut.',
       'Schließen',

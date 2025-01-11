@@ -27,14 +27,6 @@ export class RecordingService {
     formData.append('file', file);
     const mockResponse: UploadResponse = {
       id: 'abcdefg',
-      persons: {
-        person0:
-          'Willkommen zu unserem heutigen Treffen! Wir haben viel zu besprechen, also lasst uns direkt anfangen.',
-        person1:
-          'Danke, dass ihr alle gekommen seid. Ich wollte mit euch über die Planung des Sommerfestes sprechen.',
-        person2:
-          'Ja, das ist ein wichtiges Thema. Wir müssen noch entscheiden, wer sich um die Sponsoren kümmert.',
-      },
     };
 
     return of(mockResponse).pipe(delay(5000));

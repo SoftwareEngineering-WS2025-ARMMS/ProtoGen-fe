@@ -3,6 +3,7 @@ import { Annotations, Protocol, Transcript } from '../models/protocol.model';
 import { delay, Observable, of } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environment/environment';
+import { SpeakerResponse } from '../models/upload.response';
 
 @Injectable({
   providedIn: 'root',
@@ -101,6 +102,15 @@ export class ProtocolService {
       ],
     },
   ];
+
+  getRecordingState(): Observable<SpeakerResponse> {
+    return this.http.get<SpeakerResponse>(`${this.url}/api/speakers`, {
+      params: new HttpParams().set(
+        'id',
+        sessionStorage.getItem('protocolID') ?? ''
+      )
+    });
+  }
 
   getProtocols(): Observable<Protocol[]> {
     return this.http.get<Protocol[]>(`${this.url}/api/protocols`) ?? [];
@@ -226,4 +236,5 @@ export class ProtocolService {
       ),
     });
   }
+
 }

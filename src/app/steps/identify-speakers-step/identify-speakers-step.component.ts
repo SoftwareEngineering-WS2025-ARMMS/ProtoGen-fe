@@ -44,7 +44,7 @@ export class IdentifySpeakersStepComponent implements OnInit {
     const savedData = sessionStorage.getItem('step1Data');
     if (savedData) {
       const response = JSON.parse(savedData);
-      this.persons = response.persons || {};
+      this.persons = response || {};
       this.personKeys = Object.keys(this.persons);
 
       const savedNames = sessionStorage.getItem('step2Data');
