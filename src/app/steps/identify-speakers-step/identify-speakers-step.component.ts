@@ -11,7 +11,6 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { concatMap, takeWhile, timer } from 'rxjs';
 
 @Component({
   selector: 'app-identify-speakers-step',
@@ -35,7 +34,6 @@ export class IdentifySpeakersStepComponent implements OnInit {
   names: Annotations = {};
   personKeys: string[] = [];
   requestSent = false;
-  isProcessing = false;
 
   constructor(
     private protocolService: ProtocolService,
@@ -43,47 +41,22 @@ export class IdentifySpeakersStepComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isProcessing = true;
-    // Send a pull notification request every 3 secs
-    const source = timer(0, 3000).pipe(
-    takeWhile(() => this.isProcessing), // Continue while processing is true
-    concatMap(() => {
-      // Return the Observable for the API call
-      return this.protocolService.getRecordingState();
-    })
-    );
-    source.subscribe({
-      next: (response) => {
-        console.log('Inside subscribe');
-        if (response.isDone) {
-          this.isProcessing = false;
-          this.persons = response.persons || {};
-          this.personKeys = Object.keys(this.persons);
+    const savedData = sessionStorage.getItem('step1Data');
+    if (savedData) {
+      const response = JSON.parse(savedData);
+      this.persons = response || {};
+      this.personKeys = Object.keys(this.persons);
 
-          const savedNames = sessionStorage.getItem('step2Data');
-          if (savedNames) {
-            this.names = JSON.parse(savedNames);
-          } else {
-            this.names = this.personKeys.reduce(
-              (acc, key) => ({ ...acc, [key]: '' }),
-              {}
-            );
-          }
-        } else if (!response.isAnnotationDone) {
-          // TODO: Wait for annotation: Percentage cannot be shown (Unfortunately)
-          this.showError(`Annotation is not done yet...`);
-        } else {
-          // TODO: Wait for text generation: Percentage can be shown
-          this.showError(`Processing is at ${response.percentage.toFixed(2)}%`);
-        }
-      },
-      error: (error) => {
-        this.showError(
-          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+      const savedNames = sessionStorage.getItem('step2Data');
+      if (savedNames) {
+        this.names = JSON.parse(savedNames);
+      } else {
+        this.names = this.personKeys.reduce(
+          (acc, key) => ({ ...acc, [key]: '' }),
+          {}
         );
-        console.error('Failed to save name:', error);
-      },
-    });
+      }
+    }
   }
 
   saveAll(): void {

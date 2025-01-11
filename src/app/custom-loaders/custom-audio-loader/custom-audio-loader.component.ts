@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-custom-audio-loader',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './custom-audio-loader.component.html',
   styleUrl: './custom-audio-loader.component.scss',
 })
-export class CustomAudioLoaderComponent {}
+export class CustomAudioLoaderComponent {
+  @Input() progress = 0;
+}

@@ -1,6 +1,8 @@
 <div class="container">
-  <div *ngIf="isUploading; else content">
-    <app-custom-audio-loader></app-custom-audio-loader>
+  <div *ngIf="isProcessing; else content">
+    <app-custom-audio-loader
+      [progress]="progressPercentage"
+    ></app-custom-audio-loader>
   </div>
   <ng-template #content>
     <label for="fileInput" class="custom-file-label">

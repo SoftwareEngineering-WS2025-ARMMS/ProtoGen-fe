@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-custom-text-loader',
   imports: [],
   templateUrl: './custom-text-loader.component.html',
-  styleUrl: './custom-text-loader.component.scss'
+  styleUrl: './custom-text-loader.component.scss',
 })
-export class CustomTextLoaderComponent {
-
-}
+export class CustomTextLoaderComponent {}

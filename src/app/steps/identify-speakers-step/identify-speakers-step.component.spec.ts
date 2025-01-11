@@ -44,10 +44,7 @@ describe('IdentifySpeakersStepComponent', () => {
     const mockPersons = { person1: 'Speaker 1', person2: 'Speaker 2' };
     const mockNames = { person1: 'John', person2: 'Jane' };
 
-    sessionStorage.setItem(
-      'step1Data',
-      JSON.stringify({ persons: mockPersons })
-    );
+    sessionStorage.setItem('step1Data', JSON.stringify(mockPersons));
     sessionStorage.setItem('step2Data', JSON.stringify(mockNames));
 
     component.ngOnInit();
@@ -60,10 +57,7 @@ describe('IdentifySpeakersStepComponent', () => {
   it('should initialize names with empty values if step2Data is not present', () => {
     const mockPersons = { person1: 'Speaker 1', person2: 'Speaker 2' };
 
-    sessionStorage.setItem(
-      'step1Data',
-      JSON.stringify({ persons: mockPersons })
-    );
+    sessionStorage.setItem('step1Data', JSON.stringify(mockPersons));
     sessionStorage.removeItem('step2Data');
 
     component.ngOnInit();
