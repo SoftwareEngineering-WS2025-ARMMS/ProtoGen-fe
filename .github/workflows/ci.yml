@@ -35,7 +35,7 @@ jobs:
 
       # 5. Run tests
       - name: Run tests
-        run: npm test -- --watch=false --no-progress --browsers ChromeHeadless
+        run: npm test -- --watch=false --no-progress --browsers ChromeHeadless --code-coverage
 
       # 6. Build the application
       - name: Build Angular application

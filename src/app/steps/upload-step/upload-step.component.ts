@@ -26,7 +26,6 @@ export class UploadStepComponent {
   @Output() stepCompleted = new EventEmitter<void>(); // Notify parent
   selectedFile: File | null = null;
   isUploading = false;
-  errorMessage = '';
 
   // Data to pass to the next step
   stepData: UploadResponse | null = null;
@@ -40,7 +39,6 @@ export class UploadStepComponent {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
       this.selectedFile = input.files[0];
-      this.errorMessage = '';
     }
   }
 
@@ -57,12 +55,11 @@ export class UploadStepComponent {
         this.stepCompleted.emit(); // Notify parent
         stepper.next();
       },
-      error: (error) => {
+      error: () => {
         this.isUploading = false;
         this.showError(
           'Fehler beim Hochladen der Aufnahme. Bitte versuchen Sie es später erneut.'
         );
-        console.error(error);
       },
     });
   }

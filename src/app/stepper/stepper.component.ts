@@ -52,6 +52,11 @@ export class StepperComponent implements AfterViewInit {
 
   matStepperIcons!: TemplateRef<StepperIconContext>[];
 
+  // Check session storage for step completion
+  isStep1Completed = this.checkStepCompletion('step1Data');
+  isStep2Completed = this.checkStepCompletion('step2Data');
+  isStep3Completed = this.checkStepCompletion('step3Data');
+
   constructor(
     private cdr: ChangeDetectorRef,
     private router: Router
@@ -65,16 +70,6 @@ export class StepperComponent implements AfterViewInit {
     stepper.next();
   }
 
-  finishProcess(): void {
-    alert('Protocol creation complete!');
-  }
-
-  // Check session storage for step completion
-  isStep1Completed = this.checkStepCompletion('step1Data');
-  isStep2Completed = this.checkStepCompletion('step2Data');
-  isStep3Completed = this.checkStepCompletion('step3Data');
-
-  // Function to check if step data is available in sessionStorage
   checkStepCompletion(stepKey: string): boolean {
     return sessionStorage.getItem(stepKey) !== null;
   }

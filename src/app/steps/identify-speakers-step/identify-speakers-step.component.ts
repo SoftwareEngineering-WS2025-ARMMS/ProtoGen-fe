@@ -71,12 +71,11 @@ export class IdentifySpeakersStepComponent implements OnInit {
         this.stepCompleted.emit();
         this.stepper.next();
       },
-      error: (error) => {
+      error: () => {
         this.requestSent = false;
         this.showError(
-          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.'
         );
-        console.error('Failed to save name:', error);
       },
     });
   }

@@ -1,8 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { provideKeycloakAngular } from './KeycloakConfig';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import Keycloak from 'keycloak-js';
+
+const mockKeycloakService = {
+  isLoggedIn: jasmine
+    .createSpy('isLoggedIn')
+    .and.returnValue(Promise.resolve(true)),
+  login: jasmine.createSpy('login'),
+  logout: jasmine.createSpy('logout'),
+  getUserRoles: jasmine.createSpy('getUserRoles').and.returnValue(['user']),
+  loadUserProfile: jasmine
+    .createSpy('loadUserProfile')
+    .and.returnValue(Promise.resolve({ username: 'testUser' })),
+};
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -14,7 +26,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
       providers: [
-        provideKeycloakAngular(),
+        { provide: Keycloak, useValue: mockKeycloakService },
         { provide: ActivatedRoute, useValue: activatedRouteMock },
       ],
     }).compileComponents();

@@ -30,10 +30,6 @@ export class EditTranscriptStepComponent implements OnInit {
 
   transcript: Transcript = { segments: [] };
 
-  meetingDate!: string;
-  attendees!: number;
-  location = 'München';
-
   requestSent = false;
 
   constructor(
@@ -42,15 +38,10 @@ export class EditTranscriptStepComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.meetingDate = new Date().toISOString().split('T')[0];
     const savedData = sessionStorage.getItem('step3Data');
     if (savedData) {
       this.transcript = JSON.parse(savedData);
     }
-    const uniqueSpeakers = new Set(
-      this.transcript.segments.map((s) => s.speaker)
-    );
-    this.attendees = uniqueSpeakers.size;
   }
 
   deleteSegment(index: number) {
@@ -73,12 +64,11 @@ export class EditTranscriptStepComponent implements OnInit {
         this.stepCompleted.emit(); // Notify parent
         this.stepper.next();
       },
-      error: (error) => {
+      error: () => {
         this.requestSent = false;
         this.showError(
-          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+          'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.'
         );
-        console.error('Failed to save transcript:', error);
       },
     });
   }

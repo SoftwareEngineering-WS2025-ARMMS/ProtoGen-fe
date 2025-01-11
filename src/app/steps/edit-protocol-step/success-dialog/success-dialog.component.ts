@@ -40,8 +40,7 @@ export class SuccessDialogComponent {
     this.http
       .post(`${environment.dropboxUrl}/upload_file/`, formData)
       .subscribe({
-        next: (response) => {
-          console.log('File uploaded successfully:', response);
+        next: () => {
           this.snackBar.open(
             'Datei erfolgreich zu Dropbox hochgeladen!',
             'Close',
@@ -50,8 +49,7 @@ export class SuccessDialogComponent {
             }
           );
         },
-        error: (error) => {
-          console.error('Error uploading file:', error);
+        error: () => {
           this.snackBar.open(
             'Fehler beim Hochladen der Datei in Dropbox. Bitte versuchen Sie es später eneut.',
             'Close',

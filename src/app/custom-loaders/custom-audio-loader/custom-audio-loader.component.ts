@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-custom-audio-loader',
   imports: [],
   templateUrl: './custom-audio-loader.component.html',
-  styleUrl: './custom-audio-loader.component.scss'
+  styleUrl: './custom-audio-loader.component.scss',
 })
-export class CustomAudioLoaderComponent {
-
-}
+export class CustomAudioLoaderComponent {}
