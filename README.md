@@ -50,3 +50,15 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ```bash
 ng test
 ```
+
+## Code Quality and Analysis 🛠️
+
+We utilized [Sereene](https://www.seerene.com/de/), a tool for automated code quality analysis and technical debt management, to check the robustness and maintainability of our codebase. Sereene helped identify potential improvements and maintain high coding standards throughout the project.
+
+Sample final Insights from Sereene:
+
+<a href="./docs/images/sereene-logic-size.jpeg"><img src="./docs/images/sereene-logic-size.jpeg" alt="Logic Size"></a>
+
+<a href="./docs/images/sereene-complexity-logic.jpeg"><img src="./docs/images/sereene-complexity-logic.jpeg" alt="Complexity Logic"></a>
+
+Both illustrations indicate high logic in the landing page component, which currenlty contains the protocols display, filtering and pagination features. This could be in the future simplified by having a dedicated component for protocols overview and keeping the landing page as the name suggests for just a landing page.
