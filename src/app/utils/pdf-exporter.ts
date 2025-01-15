@@ -1,6 +1,9 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { Protocol } from '../models/protocol.model';
+import { DatePipe } from '@angular/common';
+
+const datePipe = new DatePipe('de-DE');
 
 export function exportToPDF(protocol: Protocol) {
   buildPDF(protocol).save(`Protokoll_${protocol.date}.pdf`);
@@ -25,8 +28,9 @@ function buildPDF(protocol: Protocol): jsPDF {
 
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-
-  doc.text(`Datum: ${protocol.date}`, 15, 20);
+  const formattedDate =
+    datePipe.transform(protocol.date, 'dd-MM-yyyy') || protocol.date;
+  doc.text(`Datum: ${formattedDate}`, 15, 20);
   doc.text(`Ort: ${protocol.place}`, 15, 25);
   doc.text(`Anwesende: ${protocol.numberOfAttendees}`, 15, 30);
 

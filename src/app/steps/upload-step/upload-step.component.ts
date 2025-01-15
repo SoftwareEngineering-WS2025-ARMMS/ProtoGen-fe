@@ -75,10 +75,13 @@ export class UploadStepComponent {
               this.stepCompleted.emit(); // Notify parent
               stepper.next(); // Move to next step
             } else if (!response.isAnnotationDone) {
-              this.progressPercentage = 0; //TODO (maybe something better here)
+              this.progressPercentage = 10; //TODO (maybe something better here)
             } else {
               // TODO: Wait for text generation: Percentage can be shown
-              this.progressPercentage = Number(response.percentage.toFixed(2));
+              this.progressPercentage =
+                Number(response.percentage.toFixed(2)) > this.progressPercentage
+                  ? Number(response.percentage.toFixed(2))
+                  : 10;
             }
           },
           error: () => {
