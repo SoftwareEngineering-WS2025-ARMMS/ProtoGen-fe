@@ -20,10 +20,12 @@
       </div>
       <div class="text-section">
         <textarea
+          #textarea
           id="text-{{ i }}"
           [(ngModel)]="segment.text"
           placeholder="Transkript"
           class="text-input"
+          (input)="adjustHeight($event)"
         ></textarea>
       </div>
       <button

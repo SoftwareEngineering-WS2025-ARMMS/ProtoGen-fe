@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList,
+  ViewChildren, AfterViewInit,
+} from '@angular/core';
 import { Transcript } from '../../models/protocol.model';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,9 +33,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './edit-transcript-step.component.html',
   styleUrl: './edit-transcript-step.component.scss',
 })
-export class EditTranscriptStepComponent implements OnInit {
+export class EditTranscriptStepComponent implements OnInit, AfterViewInit {
   @Input() stepper!: MatStepper;
   @Output() stepCompleted = new EventEmitter<void>();
+  @ViewChildren('textarea') textareas!: QueryList<ElementRef>;
 
   transcript: Transcript = { segments: [] };
 
@@ -41,7 +51,12 @@ export class EditTranscriptStepComponent implements OnInit {
     const savedData = sessionStorage.getItem('step3Data');
     if (savedData) {
       this.transcript = JSON.parse(savedData);
+      setTimeout(() => this.adjustAllTextareas(), 0);
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.adjustAllTextareas();
   }
 
   deleteSegment(index: number) {
@@ -77,5 +92,21 @@ export class EditTranscriptStepComponent implements OnInit {
     this.snackBar.open(message, 'Schließen', {
       duration: 5000,
     });
+  }
+
+  adjustHeight(event: Event): void {
+    const textarea = event.target as HTMLTextAreaElement;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }
+
+  private adjustAllTextareas(): void {
+    if (this.textareas) {
+      this.textareas.forEach((textareaRef) => {
+        const textarea = textareaRef.nativeElement as HTMLTextAreaElement;
+        textarea.style.height = 'auto';
+        textarea.style.height = `${textarea.scrollHeight}px`;
+      });
+    }
   }
 }
